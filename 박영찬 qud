@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int move_cursor(int x, int y)
+{
+	/* ANSI Escape Sequence
+	* 커서의 이동 : \033[<row>;<col>H
+	*/
+	printf("\033[%d;%dH", y, x);	//printf : print function
+	return 0;
+}
