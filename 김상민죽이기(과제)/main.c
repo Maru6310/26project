@@ -214,8 +214,14 @@ void show_game_desc()
 
 // [메뉴 1] 인트로 연출 및 전투 시스템 함수
 // [메뉴 1] 인트로 연출 및 전투 시스템 함수
+// [메뉴 1] 인트로 연출 및 전투 시스템 함수
+// [메뉴 1] 인트로 연출 및 전투 시스템 함수
+// [메뉴 1] 인트로 연출 및 전투 시스템 함수
 void start_battle()
 {
+	// 난수 초기화 (확률 시스템용)
+	srand((unsigned int)time(NULL));
+
 	system("cls");
 
 	// 인트로 연출
@@ -226,14 +232,11 @@ void start_battle()
 	move_cursor(79, 15); printf("상"); Sleep(500);
 	move_cursor(81, 15); printf("민"); Sleep(1000);
 
-	system("cls");
-
-	// 전투 시스템 변수 초기화 (보스 HP를 200으로 변경)
+	// 전투 시스템 변수 초기화
 	int bossHP = 200;
 	int playerHP = 100;
 	int battleMenu = 1;
 	int battleRunning = 1;
-	int actionMessage = 0;
 	int isFled = 0;
 
 	while (battleRunning)
@@ -241,13 +244,12 @@ void start_battle()
 		printf(COLOR_RESET);
 		system("cls");
 
-		// 1. 보스 체력 표시 (최대 HP 200 기준 반영)
+		// 1. 보스 체력 표시
 		move_cursor(115, 5);
 		set_color(FONT_COLOR_RED);
-		printf("[BOSS] 김상민 선배  HP: %d / 200", bossHP); // 200으로 변경
+		printf("[BOSS] 김상민 선배  HP: %d / 200", bossHP);
 		move_cursor(115, 6);
 		printf("체력: ");
-		// HP가 200이므로 20당 ■ 1개씩 출력하여 총 10칸 유지
 		for (int i = 0; i < bossHP / 20; i++) printf("■");
 		for (int i = 0; i < (200 - bossHP) / 20; i++) printf("  ");
 
@@ -260,7 +262,7 @@ void start_battle()
 		for (int i = 0; i < playerHP / 10; i++) printf("■");
 		for (int i = 0; i < (100 - playerHP) / 10; i++) printf("  ");
 
-		// 3. 전투 결과 판정
+		// 3. 전투 결과 판정 (턴 시작 시 체크)
 		if (bossHP <= 0)
 		{
 			system("cls");
@@ -283,12 +285,8 @@ void start_battle()
 			move_cursor(50, 14);
 			set_color(FONT_COLOR_RED);
 
-			if (isFled) {
-				printf("🏃 도망치기에 실패했습니다! 🏃");
-			}
-			else {
-				printf("💀 패배... 💀 체력이 다했습니다.");
-			}
+			if (isFled) printf("🏃 도망치기에 실패했습니다! 🏃");
+			else        printf("💀 패배... 💀 체력이 다했습니다.");
 
 			move_cursor(50, 16);
 			printf("헬스장으로 끌려가 고강도 웨이트 고문을 당합니다... 💪");
@@ -300,18 +298,7 @@ void start_battle()
 			break;
 		}
 
-		// 4. 전투 로그 출력
-		if (actionMessage == 1) {
-			move_cursor(20, 18);
-			set_color(FONT_COLOR_BRIGHTYELLOW);
-			printf("-> 김상민 선배에게 데미지 10을 입혔습니다!");
-			move_cursor(20, 19);
-			set_color(FONT_COLOR_RED);
-			printf("-> [반격] 김상민 선배의 고강도 리프팅 공격! (HP -20)");
-			actionMessage = 0;
-		}
-
-		// 5. 행동 선택 메뉴 출력
+		// 4. 행동 선택 메뉴 출력
 		move_cursor(68, 26);
 		set_color(FONT_COLOR_WHITE);
 		printf("행동을 선택하세요:");
@@ -326,29 +313,83 @@ void start_battle()
 
 		printf(COLOR_RESET);
 
-		// 6. 키 입력 처리
+		// 5. 키 입력 처리
 		int battleKey = _getch();
 		if (battleKey == 224 || battleKey == 0)
 		{
 			battleKey = _getch();
-			if (battleKey == 75)
-			{
-				battleMenu = 1;
-			}
-			else if (battleKey == 77)
-			{
-				battleMenu = 2;
-			}
+			if (battleKey == 75)      battleMenu = 1;
+			else if (battleKey == 77) battleMenu = 2;
 		}
-		else if (battleKey == 13)
+		else if (battleKey == 13) // 엔터 입력 시 실행
 		{
 			if (battleMenu == 1)
 			{
-				bossHP -= 10;
-				if (bossHP > 0) {
-					playerHP -= 20;
+				int rate = rand() % 100;
+
+				// --- [STAGE 1] 플레이어의 선제 공격 턴 ---
+				move_cursor(20, 16);
+				set_color(FONT_COLOR_BRIGHTYELLOW);
+
+				if (rate < 60) { // 60%
+					printf("-> [성공 60%%] 주먹으로 강력하게 타격! (보스 HP -20)");
+					bossHP -= 20;
 				}
-				actionMessage = 1;
+				else if (rate < 75) { // 15%
+					printf("-> [성공 15%%] 바닥에 있는 돌을 들고 머리 가격! (보스 HP -25)");
+					bossHP -= 25;
+				}
+				else if (rate < 90) { // 15% (로우킥 자해)
+					set_color(FONT_COLOR_RED);
+					printf("-> [실패 15%%] 김상민에게 로우킥을 날렸으나 다리가 단단해 내 다리가 다침! (플레이어 HP -10)");
+					playerHP -= 10;
+				}
+				else if (rate < 95) { // 5%
+					printf("-> [성공 5%%] 바닥의 모래를 눈에 뿌리고 기습 공격! (보스 HP -25)");
+					bossHP -= 25;
+				}
+				else { // 5%
+					printf("-> [성공 5%%] 킥보드로 도망치는 척 교란 후 핸들을 틀어 박치기! (보스 HP -30)");
+					bossHP -= 30;
+				}
+
+				// 플레이어가 보스 체력을 깎았으므로 상단 보스 체력바 실시간 리프레시
+				move_cursor(115, 5);
+				set_color(FONT_COLOR_RED);
+				printf("[BOSS] 김상민 선배  HP: %d / 200  ", bossHP >= 0 ? bossHP : 0);
+				move_cursor(115, 6);
+				printf("체력: ");
+				for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 20; i++) printf("■");
+				for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 20; i++) printf("  ");
+
+				// 플레이어 공격 후 연출을 위해 1.2초 대기
+				Sleep(1200);
+
+				// --- [STAGE 2] 보스의 반격 턴 ---
+				// 보스가 살아있고, 내가 로우킥 자해를 한 상황이 아니라면 반격 개시
+				if (bossHP > 0 && rate != (rate >= 75 && rate < 90 ? rate : -1))
+				{
+					// (정확히 rate가 75~89 사이가 아닐 때만 반격하도록 조건 설정)
+					if (!(rate >= 75 && rate < 90))
+					{
+						move_cursor(20, 18);
+						set_color(FONT_COLOR_RED);
+						printf("-> [반격] 김상민 선배의 고강도 리프팅 공격! (플레이어 HP -10)");
+						playerHP -= 10;
+
+						// 하단 플레이어 체력바 실시간 리프레시
+						move_cursor(5, 22);
+						set_color(FONT_COLOR_GREEN);
+						printf("[PLAYER] 김민성     HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
+						move_cursor(5, 23);
+						printf("체력: ");
+						for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
+						for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
+
+						
+						_getch();
+					}
+				}
 			}
 			else if (battleMenu == 2)
 			{
