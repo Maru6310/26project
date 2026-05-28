@@ -488,15 +488,15 @@ void start_battle()
 				}
 
 				// 하단 플레이어 체력바 실시간 업데이트
-				move_cursor(5, 22);
+				move_cursor(5, 29);
 				set_color(FONT_COLOR_GREEN);
 				printf("[PLAYER] 김민성     HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
-				move_cursor(5, 23);
+				move_cursor(5, 30);
 				printf("체력: ");
 				for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
 				for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
 
-				Sleep(1200); // 보스 반격 연출 후 대기
+				_getch(); // 보스 반격 연출 후 대기
 			}
 		}
 	}
