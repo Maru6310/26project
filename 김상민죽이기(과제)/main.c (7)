@@ -188,19 +188,19 @@ void show_game_desc() {
             set_color(FONT_COLOR_WHITE); printf(" (보스가 기를 모으거나 쉴 때 추천)");
 
             move_cursor(42, 12); set_color(FONT_COLOR_GREEN); printf("- 55%% 확률 [일반공격]:");
-            set_color(FONT_COLOR_WHITE); printf(" 잽으로 가볍게 타격! (보스 HP -20)");
+            set_color(FONT_COLOR_WHITE); printf(" 주먹으로 김상민 안면 가격! (보스 HP -20)");
 
             move_cursor(42, 14); set_color(FONT_COLOR_BRIGHTYELLOW); printf("-  5%% 확률 [잭팟]:");
-            set_color(FONT_COLOR_WHITE); printf(" 킥보드 고속 돌진 대성공! (보스 HP -50)");
+            set_color(FONT_COLOR_WHITE); printf(" W6 앞에 킥보드를 타고 김상민에게 최고 속력으로 박치기! (보스 HP -50)");
 
             move_cursor(42, 16); set_color(FONT_COLOR_GREEN); printf("- 10%% 확률 [모래던지기]:");
-            set_color(FONT_COLOR_WHITE); printf(" 눈을 흐리게 만듦 (보스 HP -10)");
+            set_color(FONT_COLOR_WHITE); printf(" 바닥의 모래를 눈에 뿌리고 기습 공격! (보스 HP -10)");
 
             move_cursor(42, 18); set_color(FONT_COLOR_CYAN); printf("- 15%% 확률 [로우킥]:");
-            set_color(FONT_COLOR_WHITE); printf(" 하체 가격 및 경직 유도 (보스 HP -15 / 보스 다음 턴 스킵)");
+            set_color(FONT_COLOR_WHITE); printf(" 김상민에게 로우킥을 날렸으나 단단한 하체로 인해 데미지가 없었다.");
 
             move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [돌던지기]:");
-            set_color(FONT_COLOR_WHITE); printf(" 주변의 돌을 주워 투척 (보스 HP -15)");
+            set_color(FONT_COLOR_WHITE); printf(" 바닥에 있는 돌을 들고 머리 가격! (보스 HP -15)");
 
             move_cursor(40, 23);
             set_color(FONT_COLOR_GREEN); printf("[2. 방어하기]");
@@ -213,10 +213,10 @@ void show_game_desc() {
             set_color(FONT_COLOR_WHITE); printf(" 아쉬운 타이밍 뚫림 (플레이어 HP -5)");
 
             move_cursor(42, 29); set_color(FONT_COLOR_RED); printf("- 10%% 확률 [방어 파쇄]:");
-            set_color(FONT_COLOR_WHITE); printf(" 가드가 완전히 파괴됨 (플레이어 HP -15)");
+            set_color(FONT_COLOR_WHITE); printf(" 완벽한 가드였으나 김상민이 후라이팬으로 가격했습니다! (플레이어 HP -15)");
 
             move_cursor(42, 31); set_color(FONT_COLOR_RED); printf("-  5%% 확률 [방어 실패]:");
-            set_color(FONT_COLOR_WHITE); printf(" 자세 무너져 전면 타격 (플레이어 HP -전액 피해)");
+            set_color(FONT_COLOR_WHITE); printf(" 김상민이 덤밸을 들고 가격하여 가드 실패! (플레이어 HP -전액 피해)");
          }
          else if (page == 3)
          {
@@ -228,27 +228,27 @@ void show_game_desc() {
             set_color(FONT_COLOR_BRIGHTYELLOW); printf("[3. 가방뒤지기]");
             set_color(FONT_COLOR_WHITE); printf(" 교수님 가방 서치 (20%% 확률로 지퍼 꽝 / 마지막 획득 효과만 적용)");
 
-            move_cursor(42, 13); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 15%% 확률 [만년필]:");
+            move_cursor(42, 13); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 15%% 확률 [이은석 교수님의 3년전 구매한 만년필 획득! ]:");
             set_color(FONT_COLOR_WHITE); printf(" 다음 공격 데미지 배율 ");
             set_color(FONT_COLOR_BRIGHTYELLOW); printf("2배로 변경");
 
-            move_cursor(42, 15); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 10%% 확률 [모니터]:");
+            move_cursor(42, 15); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 10%% 확률 [이은석 교수님의 10년전 중고 구매한 다 낡아버린 모니터 획득! ]:");
             set_color(FONT_COLOR_WHITE); printf(" 다음 공격 데미지 배율 ");
             set_color(FONT_COLOR_BRIGHTYELLOW); printf("3배로 변경");
 
-            move_cursor(42, 18); set_color(FONT_COLOR_GREEN); printf("- 20%% 확률 [건강영양제]:");
+            move_cursor(42, 18); set_color(FONT_COLOR_GREEN); printf("- 20%% 확률 [이은석 교수님의 건강영양제 획득! ]:");
             set_color(FONT_COLOR_WHITE); printf(" 체력 즉시 ");
             set_color(FONT_COLOR_GREEN); printf("HP +20"); set_color(FONT_COLOR_WHITE); printf(" 회복");
 
-            move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [남은 치킨]:");
+            move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [ 이은석 교수님의 어제 야식으로 먹다 남은 치킨 획득! ]:");
             set_color(FONT_COLOR_WHITE); printf(" 야식 잔해 흡입 ");
             set_color(FONT_COLOR_GREEN); printf("HP +15"); set_color(FONT_COLOR_WHITE); printf(" 회복");
 
-            move_cursor(42, 23); set_color(FONT_COLOR_GREEN); printf("- 10%% 확률 [녹즙(포션)]:");
+            move_cursor(42, 23); set_color(FONT_COLOR_GREEN); printf("- 10%% 확률 [이은석 교수님의 녹즙 획득! (이번 턴 종료시점부터 매 턴 피 5 지속 회복)]:");
             set_color(FONT_COLOR_WHITE); printf(" 맛있는 녹즙 시음 ");
             set_color(FONT_COLOR_GREEN); printf("HP +10"); set_color(FONT_COLOR_WHITE); printf(" 회복");
 
-            move_cursor(42, 25); set_color(FONT_COLOR_MAGENTA); printf("- 10%% 확률 [곰팡이 녹즙]:");
+            move_cursor(42, 25); set_color(FONT_COLOR_MAGENTA); printf("- 10%% 확률 [이은석 교수님의 곰팡이 녹즙 획득! (이번 턴 종료시점부터 보스 피 매 턴 5 감소)]:");
             set_color(FONT_COLOR_WHITE); printf(" 보스 식중독 투척! (보스 HP -10 즉시 피해)");
          }
          else if (page == 4)
@@ -263,16 +263,16 @@ void show_game_desc() {
 
             move_cursor(42, 13); set_color(FONT_COLOR_RED); printf("- 50%% 확률 [회피 실패]:");
             move_cursor(45, 14); set_color(FONT_COLOR_WHITE);
-            printf("멱살 잡히고 역카운터 정면 피격! (보스 대미지 + 안면 가격 추가 10 패널티)");
+            printf("회피를 시도하였으나 멱살이 잡혀 안면에 정타 허용 (보스 대미지 + 안면 가격 추가 10 패널티)");
 
             move_cursor(42, 17); set_color(FONT_COLOR_GREEN); printf("- 30%% 확률 [회피 성공]:");
             move_cursor(45, 18); set_color(FONT_COLOR_WHITE);
-            printf("공격을 피한 뒤 닭가슴살 프로틴 먹방! (보스 대미지 0 + 플레이어 ");
+            printf("공격을 피한 뒤 닭가슴살과 프로틴 먹방! (보스 대미지 0 + 플레이어 HP 10회복 ");
             set_color(FONT_COLOR_GREEN); printf("HP +10"); set_color(FONT_COLOR_WHITE); printf(" 회복)");
 
             move_cursor(42, 21); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 20%% 확률 [회피 큰 성공]:");
             move_cursor(45, 22); set_color(FONT_COLOR_WHITE);
-            printf("종이 한 장 차이로 멋지게 피하고 턱 각도 카운터 펀치! (보스 ");
+            printf("날라오는 김상민의 주먹을 가볍게 피하고 카운터! (보스 ");
             set_color(FONT_COLOR_RED); printf("HP -30"); set_color(FONT_COLOR_WHITE); printf(" 관통 피해)");
          }
          else if (page == 5) // 새롭게 추가된 5페이지
