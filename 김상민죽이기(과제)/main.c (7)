@@ -24,14 +24,11 @@
 #define FONT_COLOR_BRIGHTYELLOW 93
 
 // --- 그래픽 및 화면 제어 함수 ---
-
-void set_color(int code)
-{
+void set_color(int code) {
    printf("\x1b[%dm", code);
 }
 
-int move_cursor(int x, int y)
-{
+int move_cursor(int x, int y) {
    printf("\033[%d;%dH", y, x);
    return 0;
 }
@@ -61,8 +58,7 @@ void print_colored_map(const wchar_t* map) {
 }
 
 // 타이틀 대형 로고 출력
-void draw_title_logo()
-{
+void draw_title_logo() {
    move_cursor(40, 5);  print_colored_map(L"□■■■■■■□□□■□□□□■■□□□□■□□□□■■■■■■□□□■□□□□□■■■■■■■■■■□□□□□■■□□□□□■□□□□□□□□□□□□■\n");
    move_cursor(40, 6);  print_colored_map(L"□□□□□■■□□□■□□□□■■□□□□■□□□□■■■■■■□□□■□□□□□□□□□■■□□□□□□□■■■■■■□□□■□□□■■■■■■□□□■\n");
    move_cursor(40, 7);  print_colored_map(L"□□□□□■■□□□■□□□□■■□□□□■□□□□■□□□□■□□□■□□□□□□□□■■■■■□□□□□■■□□■■□□□■□□□□□□□□■□□□■\n");
@@ -71,18 +67,16 @@ void draw_title_logo()
    move_cursor(40, 10); print_colored_map(L"□□■■□□□□□□■□□■■□□■■■□■□□□□■■■■■■□□□■□□□□■■■■■■■■■■■■□□■□□□□■□□□■□□□□□□□■■□□□■\n");
    move_cursor(40, 11); print_colored_map(L"□■■□□□□□□□■□■■□□□□□□□■□□□□■■■■■■□□□■□□□□□□□□□■■□□□□□□□■■□□□■□□□■□□□□□□■■□□□□■\n");
    move_cursor(40, 12); print_colored_map(L"□□□■■■■■■■■□□□□■■■■■■■□□□□□□■□□□□□□■□□□□□□□□□■■□□□□□□□■■□□■■□□□■□□□□□■■□□□□□■\n");
-   move_cursor(40, 13); print_colored_map(L"□□□■□□□□□□■□□□□■■□□□■■□□□□□□■□□□□□□■□□□□□■■■■■■■■■■□□□□■■■■□□□□■□□□□■■□□□□□□■\n");
+   move_cursor(40, 13); print_colored_map(L"□□□■□□□□□□■□□□□■■□□□■■□□□□□□■□□□□□□■□□□□□■■■■■■■■..□□□□■■■■□□□□■□□□□■■□□□□□□■\n");
    move_cursor(40, 14); print_colored_map(L"□□□■□□□□□□■□□□□■□□□□□■□□□□□□■□□□□□□□□□□□□□□□□□□□□■■□□□□□□□□□□□□■□□□■□□□□□□□□■\n");
    move_cursor(40, 15); print_colored_map(L"□□□■□□□□□□■□□□□■■□□□■■□□□□□□■□□□□□□□□□□□□□□□□□□□□■■□□□□□□□□□□□□■□□□□□□□□□□□□■\n");
    move_cursor(40, 16); print_colored_map(L"□□□■■■■■■■■□□□□■■■■■■■□□□□□□■■■■■■■■□□□□□□□□□□□□□■■□□□□□□□□□□□□■□□□□□□□□□□□□■\n");
 }
 
-
 // --- 각 메뉴 화면 함수 (서브 모듈) ---
 
 // [메뉴 3] 만든이 정보 화면
-void show_maker_info()
-{
+void show_maker_info() {
    system("cls");
    move_cursor(72, 8);
    set_color(FONT_COLOR_BRIGHTMAGENTA);
@@ -124,9 +118,8 @@ void show_maker_info()
    system("cls");
 }
 
-// [메뉴 2] 게임 설명 화면 (페이지 전환 포함)
-void show_game_desc()
-{
+// [요청 반영 완료] [메뉴 2] 게임 설명 화면 (3페이지 가방뒤지기, 4페이지 회피하기로 교체 및 깨짐 방지)
+void show_game_desc() {
    int page = 1;
    int inRunning = 1;
    int needRedraw = 1;
@@ -137,56 +130,184 @@ void show_game_desc()
    {
       if (needRedraw)
       {
+         // 상단 페이지 헤더 출력
          move_cursor(1, 1);
-         move_cursor(70, 5);
+         move_cursor(70, 3);
          set_color(FONT_COLOR_BRIGHTMAGENTA);
-         printf("[ 게임 설명   %d / 2 ]          ", page);
+         printf("[ 게임 설명   %d / 4 ]          ", page);
 
-         // 내용 영역 초기화
-         for (int i = 10; i < 25; i++) {
-            move_cursor(50, i);
-            printf("                                                                  ");
+         // 내용 영역 화면 청소 (좌우 공백 밀림 및 잔상 버그 차단)
+         for (int i = 6; i < 33; i++) {
+            move_cursor(35, i);
+            printf("                                                                                                    ");
          }
 
          if (page == 1)
          {
-            move_cursor(72, 10);
+            move_cursor(68, 7);
             set_color(FONT_COLOR_BRIGHTYELLOW);
-            printf("■ 캐릭터 설정 ■");
-            move_cursor(55, 13);
+            printf("■ 1. 캐릭터 및 스토리 설정 ■");
+
+            move_cursor(45, 10);
             set_color(FONT_COLOR_WHITE);
-            printf("보스: AI콘텐츠공학과 헬창선배 김상민 (HP 100)");
-            move_cursor(55, 15);
-            printf("플레이어: 헬창 호소인 김민성 (HP 100)");
-            move_cursor(55, 20);
+            printf("보스  : AI콘텐츠공학과 헬창선배 ");
+            set_color(FONT_COLOR_RED);
+            printf("김상민 (기본 HP: 200)");
+
+            move_cursor(45, 12);
+            set_color(FONT_COLOR_WHITE);
+            printf("플레이어: 헬창 호소인 ");
             set_color(FONT_COLOR_GREEN);
-            printf("헬스 하자며 붙잡는 보스에게서 도망가기 위한 턴제 게임입니다.");
-            move_cursor(55, 22);
-            printf("플레이어는 매 턴마다 두 가지 선택지를 고릅니다.");
+            printf("김민성 (최대 HP: 100)");
+
+            move_cursor(45, 15);
+            set_color(FONT_COLOR_BRIGHTYELLOW);
+            printf("[보스 특수 패턴]");
+            move_cursor(45, 16);
+            set_color(FONT_COLOR_WHITE);
+            printf("보스의 HP가 ");
+            set_color(FONT_COLOR_RED);
+            printf("50 미만");
+            set_color(FONT_COLOR_WHITE);
+            printf("으로 떨어지면 삼겹살+소주 먹방으로 ");
+            set_color(FONT_COLOR_RED);
+            printf("HP 120으로 즉시 각성 부활!");
+
+            move_cursor(42, 20);
+            set_color(FONT_COLOR_GREEN);
+            printf("※ W6 앞에서 마주친 김상민 선배를 물리치고 술자리에 가기 위한 턴제 게임입니다.");
+
+            move_cursor(45, 23);
+            set_color(FONT_COLOR_BRIGHTYELLOW);
+            printf("[승리 조건]");
+            set_color(FONT_COLOR_WHITE);
+            printf(" 보스 HP 0 -> 단계동에서 동기들과 즐거운 술자리! 🍻");
+
+            move_cursor(45, 25);
+            set_color(FONT_COLOR_RED);
+            printf("[패배 조건]");
+            set_color(FONT_COLOR_WHITE);
+            printf(" 내 HP 0 -> 헬스장으로 끌려가 고강도 웨이트 고문... 💪");
          }
          else if (page == 2)
          {
-            move_cursor(73, 10);
+            move_cursor(70, 7);
             set_color(FONT_COLOR_BRIGHTYELLOW);
-            printf("■ 게임 규칙 ■");
-            move_cursor(55, 13);
-            set_color(FONT_COLOR_WHITE);
-            printf("1. 공격하기: 보스 HP -10 / 반격 시 플레이어 HP -20");
-            move_cursor(55, 15);
-            printf("2. 도망가기: 즉시 패배 (게임 종료)");
-            move_cursor(55, 19);
-            set_color(FONT_COLOR_GREEN);
-            printf("[승리] 보스 HP 0: 단계동에서 동기들과 즐거운 술자리!");
-            move_cursor(55, 21);
-            set_color(FONT_COLOR_RED);
-            printf("[패배] 내 HP 0: 헬스장으로 끌려가 고강도 웨이트 고문...");
+            printf("■ 2. 행동 규칙: 공격하기 & 방어하기 ■");
+
+            // 1. 공격하기 확률
+            move_cursor(40, 10);
+            set_color(FONT_COLOR_RED); printf("[1. 공격하기]");
+            set_color(FONT_COLOR_WHITE); printf(" 선택 시 주사위 확률에 따라 작동");
+
+            move_cursor(42, 12); set_color(FONT_COLOR_GREEN); printf("- 60%% 확률 [성공]:");
+            set_color(FONT_COLOR_WHITE); printf(" 주먹으로 강력하게 타격! (보스 HP -20)");
+
+            move_cursor(42, 14); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [성공]:");
+            set_color(FONT_COLOR_WHITE); printf(" 바닥의 돌을 들고 머리 가격! (보스 HP -25)");
+
+            move_cursor(42, 16); set_color(FONT_COLOR_RED); printf("- 15%% 확률 [실패]:");
+            set_color(FONT_COLOR_WHITE); printf(" 단단한 하체 로우킥 역풍! (데미지 0 / 보스 턴 스킵)");
+
+            move_cursor(42, 18); set_color(FONT_COLOR_GREEN); printf("-  5%% 확률 [성공]:");
+            set_color(FONT_COLOR_WHITE); printf(" 모래 뿌리고 기습 빈틈 공격! (보스 HP -30)");
+
+            move_cursor(42, 20); set_color(FONT_COLOR_BRIGHTYELLOW); printf("-  5%% 확률 [잭팟]:");
+            set_color(FONT_COLOR_WHITE); printf(" W6 앞 킥보드 돌진! (보스 HP -50 큰 골절 피해)");
+
+            // 2. 방어하기 확률
+            move_cursor(40, 23);
+            set_color(FONT_COLOR_GREEN); printf("[2. 방어하기]");
+            set_color(FONT_COLOR_WHITE); printf(" 안전한 가드 포지션 (선택 시 보스 공격 턴 즉시 스킵)");
+
+            move_cursor(42, 25); set_color(FONT_COLOR_GREEN); printf("- 50%% 확률 [완벽 방어]:");
+            set_color(FONT_COLOR_WHITE); printf(" 타이밍 적중! (플레이어 HP -0)");
+
+            move_cursor(42, 27); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 15%% 확률 [가드 아쉬움]:");
+            set_color(FONT_COLOR_WHITE); printf(" 아쉬운 타이밍 가드 뚫림! (플레이어 HP -5)");
+
+            move_cursor(42, 29); set_color(FONT_COLOR_RED); printf("- 15%% 확률 [방어 파쇄]:");
+            set_color(FONT_COLOR_WHITE); printf(" 김상민이 후라이팬으로 가격! (플레이어 HP -5)");
+
+            move_cursor(42, 31); set_color(FONT_COLOR_RED); printf("- 20%% 확률 [방어 실패]:");
+            set_color(FONT_COLOR_WHITE); printf(" 덤벨 날리기 공격에 전면 피격! (플레이어 HP -10)");
+         }
+         else if (page == 3) // [순서 변경] 페이지 3에 원래 4페이지에 있던 가방뒤지기 배치
+         {
+            move_cursor(71, 7);
+            set_color(FONT_COLOR_BRIGHTYELLOW);
+            printf("■ 3. 행동 규칙: 가방뒤지기 ■");
+
+            move_cursor(40, 10);
+            set_color(FONT_COLOR_BRIGHTYELLOW); printf("[3. 가방뒤지기]");
+            set_color(FONT_COLOR_WHITE); printf(" 이은석 교수님의 가방 속 유용한 도구들을 탐색 (30%% 확률로 꽝)");
+
+            move_cursor(42, 13); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 15%% 확률 [만년필]:");
+            set_color(FONT_COLOR_WHITE); printf(" 3년 전 구매품 획득! (다음 턴 공격 데미지 ");
+            set_color(FONT_COLOR_BRIGHTYELLOW); printf("2배"); set_color(FONT_COLOR_WHITE); printf(" 증가)");
+
+            move_cursor(42, 15); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 10%% 확률 [모니터]:");
+            set_color(FONT_COLOR_WHITE); printf(" 다 낡아버린 중고 모니터! (다음 턴 공격 데미지 ");
+            set_color(FONT_COLOR_BRIGHTYELLOW); printf("3배"); set_color(FONT_COLOR_WHITE); printf(" 증가)");
+
+            move_cursor(42, 18); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [건강영양제]:");
+            set_color(FONT_COLOR_WHITE); printf(" 가방 속 영양 보충! (즉시 플레이어 ");
+            set_color(FONT_COLOR_GREEN); printf("HP +10"); set_color(FONT_COLOR_WHITE); printf(" 회복)");
+
+            move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 10%% 확률 [남은 치킨]:");
+            set_color(FONT_COLOR_WHITE); printf(" 어제 야식 잔해 발견! (즉시 플레이어 ");
+            set_color(FONT_COLOR_GREEN); printf("HP +20"); set_color(FONT_COLOR_WHITE); printf(" 회복)");
+
+            move_cursor(42, 23); set_color(FONT_COLOR_GREEN); printf("- 10%% 확률 [이은석 교수님 녹즙]:");
+            set_color(FONT_COLOR_WHITE); printf(" (중복불가 지속템) 매 턴 종료시 플레이어 ");
+            set_color(FONT_COLOR_GREEN); printf("HP 5 지속 회복");
+
+            move_cursor(42, 25); set_color(FONT_COLOR_MAGENTA); printf("- 10%% 확률 [곰팡이 녹즙]:");
+            set_color(FONT_COLOR_WHITE); printf(" (중복불가 지속템) 보스 식중독 유발! 매 턴 종료시 보스 ");
+            set_color(FONT_COLOR_RED); printf("HP 5 지속 감소");
+
+            move_cursor(42, 28); set_color(FONT_COLOR_WHITE); printf("- 30%% 확률 [꽝]:");
+            set_color(FONT_COLOR_WHITE); printf(" 가방 안에서 아무것도 찾지 못했습니다..");
+         }
+         else if (page == 4) // [순서 변경] 페이지 4에 원래 3페이지에 있던 회피하기 및 도망 배치
+         {
+            move_cursor(73, 7);
+            set_color(FONT_COLOR_BRIGHTYELLOW);
+            printf("■ 4. 행동 규칙: 회피하기 ■");
+
+            move_cursor(40, 10);
+            set_color(FONT_COLOR_BLUE); printf("[4. 회피하기]");
+            set_color(FONT_COLOR_WHITE); printf(" 보스의 공격을 완전히 무력화하는 하이리스크 기술");
+
+            move_cursor(42, 13); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 20%% 확률 [회피 큰 성공]:");
+            move_cursor(45, 14); set_color(FONT_COLOR_WHITE);
+            printf("날아오는 주먹을 피하고 강력한 카운터 적중! (보스 HP -30 / 보스 턴 스킵)");
+
+            move_cursor(42, 17); set_color(FONT_COLOR_GREEN); printf("- 30%% 확률 [회피 성공]:");
+            move_cursor(45, 18); set_color(FONT_COLOR_WHITE);
+            printf("김상민의 무거운 정권을 아슬아슬하게 흘려냄! (데미지 없음 / 보스 턴 스킵)");
+
+            move_cursor(42, 21); set_color(FONT_COLOR_RED); printf("- 50%% 확률 [회피 실패]:");
+            move_cursor(45, 22); set_color(FONT_COLOR_WHITE);
+            printf("회피 동선 파악 당함! 보스에게 멱살 잡혀 안면 크게 가격당함!");
+            move_cursor(45, 23); set_color(FONT_COLOR_RED);
+            printf("-> 패널티 발생: 보스의 반격 확정 턴 진행 (추가 플레이어 HP -10)");
+
+            move_cursor(40, 26);
+            set_color(FONT_COLOR_MAGENTA); printf("[5. 도망가기]");
+            set_color(FONT_COLOR_WHITE); printf(" 배틀 메뉴 우측 하단의 비상 탈출 선택지");
+            move_cursor(42, 28); set_color(FONT_COLOR_WHITE);
+            printf("김상민 선배의 추격을 뿌리치지 못하고 붙잡혀 즉시 ");
+            set_color(FONT_COLOR_RED); printf("-BAD END-");
+            set_color(FONT_COLOR_WHITE); printf(" 처리됩니다.");
          }
 
-         move_cursor(68, 28);
+         // 하단 컨트롤러 바 안내 출력
+         move_cursor(68, 34);
          set_color(FONT_COLOR_WHITE);
-         printf("<- (왼쪽)  |  (오른쪽) ->");
-         move_cursor(60, 30);
-         printf("메뉴로 돌아가려면 아무키나 누르세요...");
+         printf("<- (왼쪽 화살표)  |  (오른쪽 화살표) ->");
+         move_cursor(60, 36);
+         printf("메뉴로 돌아가려면 화살표 이외의 아무 키나 누르세요...");
 
          needRedraw = 0;
       }
@@ -196,13 +317,13 @@ void show_game_desc()
       if (key == 224 || key == 0)
       {
          key = _getch();
-         if (key == 75) // 왼쪽 화살표
+         if (key == 75) // 왼쪽 화살표 키 입력
          {
             if (page > 1) { page--; needRedraw = 1; }
          }
-         else if (key == 77) // 오른쪽 화살표
+         else if (key == 77) // 오른쪽 화살표 키 입력
          {
-            if (page < 2) { page++; needRedraw = 1; }
+            if (page < 4) { page++; needRedraw = 1; }
          }
       }
       else
@@ -214,8 +335,7 @@ void show_game_desc()
 }
 
 // 보조 함수: 대기하면서 키 입력이 들어오면 즉시 1을 리턴(스킵 신호)
-int sleep_or_skip(int ms)
-{
+int sleep_or_skip(int ms) {
    int interval = 50; // 50ms 단위로 쪼개서 체크
    int elapsed = 0;
    while (elapsed < ms)
@@ -232,12 +352,9 @@ int sleep_or_skip(int ms)
    return 0;
 }
 
-// [메뉴 1] 인트로 연출 및 전투 시스템 함수
-void start_battle()
-{
-   // 난수 초기화 (확률 시스템용)
+// [요청 반영 완료] [메뉴 1] 인트로 연출 및 전투 시스템 함수 (순서 재조정 버전)
+void start_battle() {
    srand((unsigned int)time(NULL));
-
    system("cls");
 
    int skipIntro = 0; // 스킵 플래그 변수
@@ -313,7 +430,7 @@ void start_battle()
    // 전투 시스템 변수 초기화
    int bossHP = 200;
    int playerHP = 100;
-   int battleMenu = 1;
+   int battleMenu = 1; // 1:공격, 2:방어, 3:가방, 4:회피, 5:도망
    int battleRunning = 1;
    int isFled = 0;
    int bossHealed = 0;
@@ -388,12 +505,12 @@ void start_battle()
          printf("다음 공격 데미지 %d배 증가!", damageMultiplier);
       }
 
-      // 4. 행동 선택 메뉴 출력 (기존 33줄 -> 34줄로 한 칸 내림)
+      // 4. 행동 선택 메뉴 출력
       move_cursor(69, 34);
       set_color(FONT_COLOR_WHITE);
       printf("행동을 선택하세요:");
 
-      // 행동 종류 버튼 출력 (기존 37줄 -> 38줄로 한 칸 내림)
+      // [요청 디자인 정렬] 1.공격 2.방어 3.가방뒤지기 4.회피하기 5.도망가기
       if (battleMenu == 1) set_color(BG_COLOR_YELLOW), set_color(FONT_COLOR_BLACK);
       else set_color(BG_COLOR_BLACK), set_color(FONT_COLOR_WHITE);
       move_cursor(45, 38); printf(" 1. 공격하기 ");
@@ -404,13 +521,12 @@ void start_battle()
 
       if (battleMenu == 3) set_color(BG_COLOR_YELLOW), set_color(FONT_COLOR_BLACK);
       else set_color(BG_COLOR_BLACK), set_color(FONT_COLOR_WHITE);
-      move_cursor(79, 38); printf(" 3. 회피하기 ");
+      move_cursor(79, 38); printf(" 3. 가방뒤지기 ");
 
       if (battleMenu == 4) set_color(BG_COLOR_YELLOW), set_color(FONT_COLOR_BLACK);
       else set_color(BG_COLOR_BLACK), set_color(FONT_COLOR_WHITE);
-      move_cursor(96, 38); printf(" 4. 가방뒤지기 ");
+      move_cursor(96, 38); printf(" 4. 회피하기 ");
 
-      // 도망가기 버튼 출력 (기존 45줄 -> 46줄로 한 칸 내림)
       if (battleMenu == 5) set_color(BG_COLOR_RED), set_color(FONT_COLOR_WHITE);
       else set_color(BG_COLOR_BLACK), set_color(FONT_COLOR_MAGENTA);
       move_cursor(135, 46); printf(" 5. 도망가기... ");
@@ -421,12 +537,12 @@ void start_battle()
       if (battleKey == 224 || battleKey == 0)
       {
          battleKey = _getch();
-         if (battleKey == 75)
+         if (battleKey == 75) // 왼쪽 화살표 키
          {
             if (battleMenu == 1) battleMenu = 5;
             else battleMenu--;
          }
-         else if (battleKey == 77)
+         else if (battleKey == 77) // 오른쪽 화살표 키
          {
             if (battleMenu == 5) battleMenu = 1;
             else battleMenu++;
@@ -436,13 +552,13 @@ void start_battle()
       {
          int skipBossTurn = 0;
 
-         //이전 턴의 메시지 잔상 지우기 (24, 26, 28번 라인 청소)
+         // 이전 턴의 메시지 잔상 지우기
          for (int row = 24; row <= 28; row++) {
             move_cursor(20, row);
-            printf("                                                                                                                                                                                ");
+            printf("                                                                                                                                                                                                                                                                ");
          }
 
-         // --- [STAGE 1] 플레이어 선택 행동 처리 (25층 -> 24층으로 이동) ---
+         // --- [STAGE 1] 플레이어 선택 행동 처리 ---
          move_cursor(20, 24);
 
          if (battleMenu == 1) // 1. 공격하기
@@ -492,7 +608,7 @@ void start_battle()
                   printf(" (버프 적용!)");
                }
             }
-            damageMultiplier = 1; // 공격을 마쳤으므로 버프 초기화
+            damageMultiplier = 1;
          }
          else if (battleMenu == 2) // 2. 방어하기
          {
@@ -519,28 +635,7 @@ void start_battle()
                playerHP -= 10;
             }
          }
-         else if (battleMenu == 3) // 3. 회피하기
-         {
-            int evaRate = rand() % 100;
-
-            if (evaRate < 20) {
-               set_color(FONT_COLOR_BRIGHTYELLOW);
-               printf("-> [회피 큰 성공 20%%] 날라오는 김상민의 주먹을 가볍게 피하고 카운터! (보스 HP -30)");
-               bossHP -= 30;
-               skipBossTurn = 1;
-            }
-            else if (evaRate < 50) {
-               set_color(FONT_COLOR_GREEN);
-               printf("-> [회피 성공 30%%] 김상민의 주먹을 아슬아슬하게 흘렸습니다! (데미지 없음)");
-               skipBossTurn = 1;
-            }
-            else {
-               set_color(FONT_COLOR_RED);
-               printf("-> [회피 실패 50%%] 회피를 시도하였으나 멱살이 잡혀 얼굴 가격당함! (보스 턴 진행)");
-               skipBossTurn = 0;
-            }
-         }
-         else if (battleMenu == 4) // 4. 가방뒤지기
+         else if (battleMenu == 3) // 3. 가방뒤지기 (순서 매핑 수정)
          {
             int bagRate = rand() % 100;
 
@@ -564,22 +659,40 @@ void start_battle()
                printf("-> [가방 뒤지기 10%%] 이은석 교수님의 어제 야식으로 먹다 남은 치킨 획득! (즉시 HP + 20)");
                playerHP += 20; if (playerHP > 100) playerHP = 100;
             }
-            // 녹즙 획득 (조건 추가: 아직 안 뽑았을 때만)
             else if (bagRate < 60 && greenJuiceActive == 0) {
                set_color(FONT_COLOR_GREEN);
                printf("-> [가방 뒤지기 10%%] 이은석 교수님의 녹즙 획득! (이번 턴 종료시점부터 매 턴 피 5 지속 회복)");
                greenJuiceActive = 1;
             }
-            // 곰팡이 녹즙 획득 (조건 추가: 아직 안 뽑았을 때만)
             else if (bagRate < 70 && moldJuiceActive == 0) {
                set_color(FONT_COLOR_MAGENTA);
                printf("-> [가방 뒤지기 10%%] 이은석 교수님의 곰팡이 녹즙 획득! (이번 턴 종료시점부터 보스 피 매 턴 5 감소)");
                moldJuiceActive = 1;
             }
-            // 60~70 구간에 걸렸으나 이미 아이템을 보유 중이거나, 원래 30% 꽝 확률인 경우
             else {
                set_color(FONT_COLOR_WHITE);
                printf("-> [가방 뒤지기 30%%] 가방 안에서 아무것도 찾지 못했습니다..");
+            }
+         }
+         else if (battleMenu == 4) // 4. 회피하기 (순서 매핑 수정)
+         {
+            int evaRate = rand() % 100;
+
+            if (evaRate < 20) {
+               set_color(FONT_COLOR_BRIGHTYELLOW);
+               printf("-> [회피 큰 성공 20%%] 날라오는 김상민의 주먹을 가볍게 피하고 카운터! (보스 HP -30)");
+               bossHP -= 30;
+               skipBossTurn = 1;
+            }
+            else if (evaRate < 50) {
+               set_color(FONT_COLOR_GREEN);
+               printf("-> [회피 성공 30%%] 김상민의 주먹을 아슬아슬하게 흘렸습니다! (데미지 없음)");
+               skipBossTurn = 1;
+            }
+            else {
+               set_color(FONT_COLOR_RED);
+               printf("-> [회피 실패 50%%] 회피를 시도하였으나 멱살이 잡혀 얼굴 가격당함! (보스 턴 진행)");
+               skipBossTurn = 0;
             }
          }
          else if (battleMenu == 5) // 5. 도망가기
@@ -615,13 +728,13 @@ void start_battle()
          for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
          for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
 
-         Sleep(1500); // 연출용 대기
+         Sleep(1500);
 
-         // 보스 체력 50 미만 시 부활 패턴 (25층 -> 24층으로 이동)
+         // 보스 체력 50 미만 시 부활 패턴
          if (bossHP > 0 && bossHP < 50 && bossHealed == 0)
          {
             move_cursor(20, 24);
-            printf("                                                                                                                                                                                                                                ");
+            printf("                                                                                                                                                                                                                                                                ");
             move_cursor(20, 24);
             set_color(FONT_COLOR_RED);
             printf("-> [보스 각성] 이은석 교수님과의 삼겹살과 소주 먹방으로 체력이 회복됐다! (체력 120으로 회복)");
@@ -637,13 +750,13 @@ void start_battle()
             Sleep(1500);
          }
 
-         // --- [STAGE 2] 보스의 반격 턴 (27층 -> 26층으로 이동) ---
+         // --- [STAGE 2] 보스의 반격 턴 (회피 인덱스가 4로 정정됨) ---
          if (bossHP > 0 && !skipBossTurn)
          {
             move_cursor(20, 26);
             set_color(FONT_COLOR_RED);
 
-            if (battleMenu == 3) {
+            if (battleMenu == 4) { // 회피 메뉴 번호가 4로 변경됨에 따른 보정
                printf("-> [피격] 회피 실패의 대가! 김상민 선배의 강력한 안면 가격! (플레이어 HP -10)");
             }
             else {
@@ -660,7 +773,7 @@ void start_battle()
             Sleep(1500);
          }
 
-         // --- [STAGE 3] 녹즙 및 곰팡이 정산 (29층 -> 28층으로 이동) ---
+         // --- [STAGE 3] 녹즙 및 곰팡이 정산 ---
          if (greenJuiceActive || moldJuiceActive)
          {
             move_cursor(20, 28);
@@ -678,16 +791,14 @@ void start_battle()
                printf("[곰팡이 정산] 김상민이 식중독 증세로 HP가 5 감소합니다! ");
             }
 
-            // 정산된 체력 실시간 재갱신
             move_cursor(5, 31); set_color(FONT_COLOR_GREEN);
             printf("[PLAYER] 김민성     HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
             move_cursor(118, 3); set_color(FONT_COLOR_RED);
             printf("[BOSS] 김상민 선배   HP: %d / 200  ", bossHP >= 0 ? bossHP : 0);
 
-            Sleep(1500); // 녹즙 틱 이펙트를 인지할 수 있도록 대기
+            Sleep(1500);
          }
 
-         // 사용자의 키 입력이 들어올 때까지 대기
          _getch();
       }
    }
@@ -696,9 +807,7 @@ void start_battle()
 }
 
 // --- 메인 함수 (전체 흐름 관리) ---
-
-int main()
-{
+int main() {
    int posY = 1;
    char input = 0;
    int isRunning = 1;
