@@ -187,35 +187,35 @@ void show_game_desc() {
             set_color(FONT_COLOR_WHITE); printf(" (보스가 기를 모으거나 쉴 때 추천)");
 
             move_cursor(42, 12); set_color(FONT_COLOR_GREEN); printf("- 55%% 확률 [일반공격]:");
-            set_color(FONT_COLOR_WHITE); printf(" 주먹으로 김상민 안면 가격! (보스 HP -20)");
+            set_color(FONT_COLOR_WHITE); printf(" 주먹으로 김상민 안면 가격!(보스 HP -20)");
 
             move_cursor(42, 14); set_color(FONT_COLOR_BRIGHTYELLOW); printf("-  5%% 확률 [잭팟]:");
-            set_color(FONT_COLOR_WHITE); printf(" W6 앞에 킥보드를 타고 김상민에게 최고 속력으로 박치기! (보스 HP -50)");
+            set_color(FONT_COLOR_WHITE); printf(" W6 앞에 킥보드를 타고 김상민에게 최고 속력으로 박치기!(보스 HP -50)");
 
             move_cursor(42, 16); set_color(FONT_COLOR_GREEN); printf("- 10%% 확률 [모래던지기]:");
-            set_color(FONT_COLOR_WHITE); printf(" 바닥의 모래를 눈에 뿌리고 기습 공격! (보스 HP -10)");
+            set_color(FONT_COLOR_WHITE); printf(" 바닥의 모래를 눈에 뿌리고 기습 공격!(보스 HP -10)");
 
             move_cursor(42, 18); set_color(FONT_COLOR_CYAN); printf("- 15%% 확률 [로우킥]:");
             set_color(FONT_COLOR_WHITE); printf(" 김상민에게 로우킥을 날렸으나 단단한 하체로 인해 데미지가 없었다.");
 
             move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [돌던지기]:");
-            set_color(FONT_COLOR_WHITE); printf(" 바닥에 있는 돌을 들고 머리 가격! (보스 HP -15)");
+            set_color(FONT_COLOR_WHITE); printf(" 바닥에 있는 돌을 들고 머리 가격!(보스 HP -15)");
 
             move_cursor(40, 23);
             set_color(FONT_COLOR_GREEN); printf("[2. 방어하기]");
             set_color(FONT_COLOR_WHITE); printf(" (보스의 강한 타격 타이밍에 연계)");
 
             move_cursor(42, 25); set_color(FONT_COLOR_GREEN); printf("- 70%% 확률 [방어 성공]:");
-            set_color(FONT_COLOR_WHITE); printf(" 타이밍 적중 철벽 가드! (플레이어 HP -0)");
+            set_color(FONT_COLOR_WHITE); printf(" 타이밍 적중 철벽 가드!(플레이어 HP -0)");
 
             move_cursor(42, 27); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 15%% 확률 [가드 아쉬움]:");
-            set_color(FONT_COLOR_WHITE); printf(" 아쉬운 타이밍 뚫림 (플레이어 HP -5)");
+            set_color(FONT_COLOR_WHITE); printf(" 아쉬운 타이밍 뚫림(플레이어 HP -5)");
 
             move_cursor(42, 29); set_color(FONT_COLOR_RED); printf("- 10%% 확률 [방어 파쇄]:");
-            set_color(FONT_COLOR_WHITE); printf(" 완벽한 가드였으나 김상민이 후라이팬으로 가격했습니다! (플레이어 HP -15)");
+            set_color(FONT_COLOR_WHITE); printf(" 완벽한 가드였으나 김상민이 후라이팬으로 가격했습니다!(플레이어 HP -15)");
 
             move_cursor(42, 31); set_color(FONT_COLOR_RED); printf("-  5%% 확률 [방어 실패]:");
-            set_color(FONT_COLOR_WHITE); printf(" 김상민이 덤밸을 들고 가격하여 가드 실패! (플레이어 HP -전액 피해)");
+            set_color(FONT_COLOR_WHITE); printf(" 김상민이 덤밸을 들고 가격하여 가드 실패!(플레이어 HP -전액 피해)");
          }
          else if (page == 3)
          {
@@ -239,7 +239,7 @@ void show_game_desc() {
             set_color(FONT_COLOR_WHITE); printf(" 체력 즉시 ");
             set_color(FONT_COLOR_GREEN); printf("HP +20"); set_color(FONT_COLOR_WHITE); printf(" 회복");
 
-            move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [ 이은석 교수님의 어제 야식으로 먹다 남은 치킨 획득! ]:");
+            move_cursor(42, 20); set_color(FONT_COLOR_GREEN); printf("- 15%% 확률 [이은석 교수님의 어제 야식으로 먹다 남은 치킨 획득! ]:");
             set_color(FONT_COLOR_WHITE); printf(" 야식 잔해 흡입 ");
             set_color(FONT_COLOR_GREEN); printf("HP +15"); set_color(FONT_COLOR_WHITE); printf(" 회복");
 
@@ -265,7 +265,7 @@ void show_game_desc() {
 
             move_cursor(42, 17); set_color(FONT_COLOR_GREEN); printf("- 30%% 확률 [회피 성공]:");
             move_cursor(45, 18); set_color(FONT_COLOR_WHITE);
-            printf("공격을 피한 뒤 닭가슴살과 프로틴 먹방! (보스 대미지 0 + 플레이어 HP 10회복 ");
+            printf("공격을 피한 뒤 닭가슴살과 프로틴 먹방! (보스 대미지 0 + 플레이어 ");
             set_color(FONT_COLOR_GREEN); printf("HP +10"); set_color(FONT_COLOR_WHITE); printf(" 회복)");
 
             move_cursor(42, 21); set_color(FONT_COLOR_BRIGHTYELLOW); printf("- 20%% 확률 [회피 큰 성공]:");
@@ -470,7 +470,7 @@ void start_battle() {
             isBossAttackTurn = true;
             move_cursor(30, 21);
             set_color(FONT_COLOR_RED);
-            printf("🔥 [보스 각성] 김상민 선배가 소주를 마시며 버서커 상태로 돌입했습니다! (HP 120 세팅) 🔥");
+            printf("🔥 [보스 각성] 김상민 선배가 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 상태로 돌입했습니다! (HP 120 세팅) 🔥");
             Sleep(1500);
          }
 
@@ -700,13 +700,15 @@ void start_battle() {
             {
                system("cls");
                set_color(FONT_COLOR_WHITE);
-               move_cursor(60, 12); printf("김상민 선배의 압도적인 위압감을 이기지 못하고 도망쳤다.."); Sleep(1500);
-               move_cursor(62, 15); printf("선택 즉시 전투가 중단되며 특수한 스토리 연출이 발생합니다."); Sleep(1500);
-               move_cursor(61, 18); printf("과연 괴물 헬창 선배의 손아귀에서 완벽히 벗어날 수 있을까요...?"); Sleep(2000);
-               move_cursor(63, 22); set_color(FONT_COLOR_RED); printf("김상민: \"민성아. 도망가는 것도 하체 유산소다. 잡히면 알지?\""); Sleep(1800);
-               move_cursor(66, 25); set_color(FONT_COLOR_WHITE); printf("어디선가 들리는 목소리와 함께 멱살이 잡혔다..."); Sleep(1500);
-               move_cursor(67, 28); set_color(FONT_COLOR_RED); printf("..결국 그에게서 완벽히 벗어날 수는 없었다."); Sleep(1500);
-               move_cursor(74, 32); set_color(FONT_COLOR_RED); printf("- BAD END -"); Sleep(1500);
+               move_cursor(60, 12); printf("김상민을 뿌리치고 도망쳤다.."); Sleep(2000);
+               move_cursor(61, 14); printf("비록 동기들과의 술자리는 가지 못했지만"); Sleep(2000);
+               move_cursor(60, 16); printf("김상민과의 싸움을 이길 가능성도 희박하고"); Sleep(2000);
+               move_cursor(60, 18); printf("만약 지면 끔찍한 지옥을 보았을 것이다..."); Sleep(2000);
+               move_cursor(70, 20); set_color(FONT_COLOR_GREEN); printf("무사히 도망치길 잘했다.."); Sleep(2500);
+               move_cursor(63, 23); set_color(FONT_COLOR_WHITE); printf("아니, 무사히 도망쳤다고 생각했었다."); Sleep(2500);
+               move_cursor(69, 26); set_color(FONT_COLOR_RED); printf("김상민: \"민성아. 가야지?\""); Sleep(2500);
+               move_cursor(65, 29); set_color(FONT_COLOR_WHITE); printf("..그에게서 벗어날 수는 없었다."); Sleep(2000);
+               move_cursor(75, 32); set_color(FONT_COLOR_RED); printf("-BAD END-"); Sleep(2000);
                move_cursor(57, 35); set_color(FONT_COLOR_GREEN); printf("-> 아무 키나 누르면 타이틀 화면으로 이동합니다.");
                _getch();
                battleRunning = 0;
@@ -719,7 +721,7 @@ void start_battle() {
                isBossAttackTurn = true;
                move_cursor(20, 25);
                set_color(FONT_COLOR_RED);
-               printf("-> 🔥 [보스 각성] 피가 깎인 김상민이 소주를 들이켜며 버서커 각성! (HP 120 회복 / 매턴 공격 폭주!)");
+               printf("-> 🔥 [보스 각성] 피가 깎인 김상민이 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 각성! (HP 120 회복 / 매턴 공격 폭주!)");
                skipBossTurn = 1;
                Sleep(1500);
             }
@@ -922,7 +924,7 @@ void start_battle() {
             printf("★ 승리! ★ 치열한 전투 끝에 김상민 선배를 물리쳤습니다!");
             Sleep(1500);
             move_cursor(45, 15); set_color(FONT_COLOR_GREEN);
-            printf("하 김상민을 겨우 잡았다... 이 헬창 선배한테 탈출하는 것도 끝이다.");
+            printf("하 김상민을 겨우 잡았다... 이 헬창새끼한테 붙잡혀서 운동으로 고문당하는 것도 이젠 끝이다.");
             Sleep(1500);
             move_cursor(45, 17);
             printf("빨리 단계동으로 튀어서 동기들이랑 시원하게 소맥 말아 마셔야지! 🍻");
@@ -943,10 +945,10 @@ void start_battle() {
             printf("김상민: 민성아 술자리가 웬 말이냐? 스쿼트 200개 더 채우고 집 가자.");
             Sleep(1800);
             move_cursor(45, 18); set_color(FONT_COLOR_GREEN);
-            printf("김민성: 선배님 제발 살려주세요... 다신 안 비비겠습니다...");
+            printf("김민성: 상민선배님 제발 살려주세요... 다신 안 깝치겠습니다...");
             Sleep(1800);
             move_cursor(45, 21); set_color(FONT_COLOR_RED);
-            printf("김상민: 헛소리 말고 바벨 잡아라. 오늘 하체 찢어지게 운동하는 거다.");
+            printf("김상민: 어 민성아 난 상관없어. 너 걍 오늘 헬스장에서 죽어보자.");
             Sleep(2000);
             move_cursor(45, 25); set_color(FONT_COLOR_WHITE);
             printf("-> 아무 키나 누르면 메인 메뉴로 돌아갑니다.");
