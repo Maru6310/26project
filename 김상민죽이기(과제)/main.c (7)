@@ -72,7 +72,7 @@ void draw_title_logo() {
    move_cursor(40, 10); print_colored_map(L"□□■■□□□□□□■□□■■□□■■■□■□□□□■■■■■■□□□■□□□□■■■■■■■■■■■■□□■□□□□■□□□■□□□□□□□■■□□□■\n");
    move_cursor(40, 11); print_colored_map(L"□■■□□□□□□□■□■■□□□□□□□■□□□□■■■■■■□□□■□□□□□□□□□■■□□□□□□□■■□□□■□□□■□□□□□□■■□□□□■\n");
    move_cursor(40, 12); print_colored_map(L"□□□■■■■■■■■□□□□■■■■■■■□□□□□□■□□□□□□■□□□□□□□□□■■□□□□□□□■■□□■■□□□■□□□□□■■□□□□□■\n");
-   move_cursor(40, 13); print_colored_map(L"□□□■□□□□□□■□□□□■■□□□■■□□□□□□■□□□□□□■□□□□□■■■■■■■■..□□□□■■■■□□□□■□□□□■■□□□□□□■\n");
+   move_cursor(40, 13); print_colored_map(L"□□□■□□□□□□■□□□□■■□□□■■□□□□□□■□□□□□□■□□□□□■■■■■■■■■□□□□■■■■□□□□■□□□□■■□□□□□□■\n");
    move_cursor(40, 14); print_colored_map(L"□□□■□□□□□□■□□□□■□□□□□■□□□□□□■□□□□□□□□□□□□□□□□□□□□■■□□□□□□□□□□□□■□□□■□□□□□□□□■\n");
    move_cursor(40, 15); print_colored_map(L"□□□■□□□□□□■□□□□■■□□□■■□□□□□□■□□□□□□□□□□□□□□□□□□□□■■□□□□□□□□□□□□■□□□□□□□□□□□□■\n");
    move_cursor(40, 16); print_colored_map(L"□□□■■■■■■■■□□□□■■■■■■■□□□□□□■■■■■■■■□□□□□□□□□□□□□■■□□□□□□□□□□□□■□□□□□□□□□□□□■\n");
@@ -121,7 +121,7 @@ void show_maker_info() {
    system("cls");
 }
 
-//[메뉴 2] 게임 설명 화면//
+// [메뉴 2] 게임 설명 화면
 void show_game_desc() {
    int page = 1;
    int inRunning = 1;
@@ -139,7 +139,7 @@ void show_game_desc() {
 
          for (int i = 6; i < 35; i++) {
             move_cursor(35, i);
-            printf("                                                                                                     ");
+            printf("                                                                                                      ");
          }
 
          if (page == 1)
@@ -283,7 +283,7 @@ void show_game_desc() {
             set_color(FONT_COLOR_MAGENTA); printf("[5. 도망가기...]");
             set_color(FONT_COLOR_WHITE); printf(" 김상민 선배의 압도적인 위압감을 이기지 못하고 런!");
 
-            move_cursor(42, 16); set_color(FONT_COLOR_RED); printf("- ⚠️ 주의 사항:");
+            move_cursor(42, 16); set_color(FONT_COLOR_RED); printf("- 주의 사항:");
             move_cursor(45, 18); set_color(FONT_COLOR_WHITE);
             printf("선택 즉시 전투가 중단되며, 특수한 스토리 연출이 발생합니다.");
 
@@ -407,13 +407,13 @@ void start_battle() {
    int skipBossTurn = 0;
    int damageMultiplier = 1;
 
-   // 🧪 [지속 도트 상태 제어 변수]
-   int hasGreenJuice = 0; // 1이면 매 턴 플레이어 피 5 회복 활성화
-   int hasMoldJuice = 0;  // 1이면 매 턴 보스 피 5 감소 활성화
+   // 지속 도트 상태 제어 변수
+   int hasGreenJuice = 0;
+   int hasMoldJuice = 0;
 
-   // 🚫 [녹즙 중복 등장 방지용 플래그 변수 추가]
-   int greenJuiceDropped = 0; // 일반 녹즙이 한 번이라도 나왔으면 1
-   int moldJuiceDropped = 0;  // 곰팡이 녹즙이 한 번이라도 나왔으면 1
+   // 녹즙 중복 등장 방지용 플래그 변수 추가
+   int greenJuiceDropped = 0;
+   int moldJuiceDropped = 0;
 
    // [복합 템포 상태머신 제어 변수]
    int bossPatternState = 0;
@@ -422,14 +422,14 @@ void start_battle() {
    int currentTurnDamage = 0;
    bool isBossAttackTurn = false;
 
-   // 🎲 [SEED 플레이 시스템 핵심 변수]
+   // SEED 플레이 시스템 핵심 변수
    int bossSeed = (rand() % 3) + 1;
    int bossCycleStep = 1;
    int maxCycleStep = 11;
 
-   if (bossSeed == 1) maxCycleStep = 11;      // AABC 루프 총 길이
-   else if (bossSeed == 2) maxCycleStep = 9;   // BAC 루프 총 길이
-   else if (bossSeed == 3) maxCycleStep = 12;  // ABAC 루프 총 길이
+   if (bossSeed == 1) maxCycleStep = 11;
+   else if (bossSeed == 2) maxCycleStep = 9;
+   else if (bossSeed == 3) maxCycleStep = 12;
 
    // 루프 내 제어 변수 선언
    int battleKey = 0;
@@ -470,14 +470,14 @@ void start_battle() {
             isBossAttackTurn = true;
             move_cursor(30, 21);
             set_color(FONT_COLOR_RED);
-            printf("🔥 [보스 각성] 김상민 선배가 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 상태로 돌입했습니다! (HP 120 세팅) 🔥");
+            printf("[보스 각성] 김상민 선배가 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 상태로 돌입했습니다! (HP 120 세팅)");
             Sleep(1500);
          }
 
          // --- [화면 출력부] 배정된 시드 정보와 실시간 상태 알림 제공 ---
          move_cursor(22, 21);
          set_color(FONT_COLOR_WHITE);
-         printf("🎲 [현재 적용된 배틀 시드]: ");
+         printf("◆ [현재 적용된 배틀 시드]: ");
          set_color(FONT_COLOR_BRIGHTYELLOW);
          if (bossSeed == 1) printf("시드 1번 - [AABC형 변칙 사이클]");
          else if (bossSeed == 2) printf("시드 2번 - [BAC형 초돌진 사이클]");
@@ -486,43 +486,43 @@ void start_battle() {
          move_cursor(22, 22);
          if (bossAwakened) {
             set_color(FONT_COLOR_RED);
-            printf("⚠️ [보스 분노] 버서커 모드 폭주! 패턴을 파괴하고 매 턴 공격합니다! (확정 대미지: 25)");
+            printf("[보스 분노] 버서커 모드 폭주! 패턴을 파괴하고 매 턴 공격합니다! (확정 대미지: 25)");
          }
          else {
             if (bossPatternState == 0) {
                set_color(FONT_COLOR_BRIGHTYELLOW);
-               printf("⚔️ [보스 패턴 A: 기본공격] 안면을 노리는 기습적인 초고속 잽! (확정 대미지: 10)");
+               printf("[보스 패턴 A: 기본공격] 안면을 노리는 기습적인 초고속 잽! (확정 대미지: 10)");
             }
             else if (bossPatternState == 1) {
                set_color(FONT_COLOR_CYAN);
-               printf("⚡ [보스 패턴 B: 1턴차지] 1턴 간 기모으기 모션을 취하며 도약 강타를 준비합니다! (안전)");
+               printf("[보스 패턴 B: 1턴차지] 1턴 간 기모으기 모션을 취하며 도약 강타를 준비합니다! (안전)");
             }
             else if (bossPatternState == 2) {
                set_color(FONT_COLOR_RED);
-               printf("⚔️ [보스 패턴 B: 타격] 머리 위로 묵직한 강타 일격이 떨어집니다! (확정 대미지: 30)");
+               printf("[보스 패턴 B: 타격] 머리 위로 묵직한 강타 일격이 떨어집니다! (확정 대미지: 30)");
             }
             else if (bossPatternState == 3) {
                set_color(FONT_COLOR_MAGENTA);
-               printf("🔥 [보스 패턴 C: 3턴차지] \"중량 통제 실시한다.\" 포효 장전 중! (남은 시간: %d턴 / 안전구간)", bossChargeCount);
+               printf("[보스 패턴 C: 3턴차지] \"중량 통제 실시한다.\" 포효 장전 중! (남은 시간: %d턴 / 안전구간)", bossChargeCount);
             }
             else if (bossPatternState == 4) {
                set_color(FONT_COLOR_RED);
-               printf("⚔️ [보스 패턴 C: 필살기] 3대 500 멸망의 일격이 터집니다! (확정 대미지: 80!)");
+               printf("[보스 패턴 C: 필살기] 3대 500 멸망의 일격이 터집니다! (확정 대미지: 80!)");
             }
             else if (bossPatternState == 5) {
                set_color(FONT_COLOR_GREEN);
-               printf("🍃 [보스 탈진 휴식] 필살기 후유증으로 무방비 상태입니다! (남은 휴식: %d턴 / 극딜 찬스)", bossExhaustCount);
+               printf("[보스 탈진 휴식] 필살기 후유증으로 무방비 상태입니다! (남은 휴식: %d턴 / 극딜 찬스)", bossExhaustCount);
             }
          }
 
-         // 녹즙 상태창 디스플레이
+         // 녹즙 상태창 디스플레이 위치 변경 (체력바 부근 제거 -> 패턴 라인 아랫줄 y=23, 24에 배치)
          if (hasGreenJuice) {
-            move_cursor(5, 27); set_color(FONT_COLOR_GREEN);
-            printf("🍵 [지속 버프] 이은석 교수님의 녹즙 효과 활성화 (매 턴 체력 +5 회복)");
+            move_cursor(22, 23); set_color(FONT_COLOR_GREEN);
+            printf("[지속 버프] 이은석 교수님의 녹즙 효과 활성화 (매 턴 체력 +5 회복)");
          }
          if (hasMoldJuice) {
-            move_cursor(118, 6); set_color(FONT_COLOR_MAGENTA);
-            printf("🦠 [지속 디버프] 곰팡이 녹즙 식중독 상태 (매 턴 보스 체력 -5 감소)");
+            move_cursor(22, 24); set_color(FONT_COLOR_MAGENTA);
+            printf("[지속 디버프] 곰팡이 녹즙 식중독 상태 (매 턴 보스 체력 -5 감소)");
          }
 
          // UI 바 표시 
@@ -540,7 +540,7 @@ void start_battle() {
 
          if (damageMultiplier > 1) {
             move_cursor(5, 29);   set_color(FONT_COLOR_BRIGHTYELLOW);
-            printf("⚡ 가방 효과 적용 중: 다음 공격력 %d배 강화!", damageMultiplier);
+            printf("▶ 가방 효과 적용 중: 다음 공격력 %d배 강화!", damageMultiplier);
          }
 
          // 메뉴 렌더링
@@ -577,8 +577,8 @@ void start_battle() {
          }
          else if (battleKey == 13)
          {
-            // 엔터 입력 시 턴 정산 개시
-            for (int row = 24; row <= 30; row++) {
+            // 엔터 입력 시 정산 개시
+            for (int row = 24; row <= 29; row++) {
                move_cursor(15, row);
                printf("                                                                                                                                                                                                         ");
             }
@@ -604,7 +604,7 @@ void start_battle() {
                }
                else if (atkRate < 60) {
                   dmg = 50 * currentAppliedMultiplier;
-                  printf("-> ⚡ [잭팟 5%%] W6 앞에 킥보드를 타고 김상민에게 최고 속력으로 박치기! 보스에게 %d 대미지!", dmg);
+                  printf("-> [잭팟 5%%] W6 앞에 킥보드를 타고 김상민에게 최고 속력으로 박치기! 보스에게 %d 대미지!", dmg);
                   bossHP -= dmg;
                }
                else if (atkRate < 70) {
@@ -613,7 +613,7 @@ void start_battle() {
                   bossHP -= dmg;
                }
                else if (atkRate < 85) {
-                  printf("-> 💫 [로우킥 15%%] 김상민에게 로우킥을 날렸으나 단단한 하체로 인해 데미지가 없었다! (대미지: 0 / 다음 턴 스킵)");
+                  printf("-> [로우킥 15%%] 김상민에게 로우킥을 날렸으나 단단한 하체로 인해 데미지가 없었다! (대미지: 0 / 다음 턴 스킵)");
                   skipBossTurn = 1;
                }
                else {
@@ -659,31 +659,27 @@ void start_battle() {
                   printf("-> [남은 치킨 15%%] 이은석 교수님의 어제 야식으로 먹다 남은 치킨 획득! 야식 잔해 흡입 HP +15 회복!");
                }
                else if (bagRate < 90) {
-                  // 🛑 [일반 녹즙 획득 검사 및 제한]
                   if (greenJuiceDropped == 0) {
-                     greenJuiceDropped = 1; // 단 1회만 나오도록 고정
+                     greenJuiceDropped = 1;
                      hasGreenJuice = 1;
                      playerHP += 10; if (playerHP > 100) playerHP = 100;
                      set_color(FONT_COLOR_GREEN);
                      printf("-> [녹즙 10%%] 이은석 교수님의 녹즙 획득! 맛있는 녹즙 시음 HP +10 즉시 회복! (다음 턴부터 매 턴 피 5 지속 회복)");
                   }
                   else {
-                     // 이미 획득한 적이 있다면 '지퍼 꽝' 패널티 연출로 대체
                      set_color(FONT_COLOR_WHITE);
                      printf("-> [가방 서치 꽝] 녹즙을 다시 꺼내려 했으나 가방 안이 비어 지퍼 소리만 났습니다.");
                   }
                }
                else {
-                  // 🛑 [곰팡이 녹즙 획득 검사 및 제한]
                   if (moldJuiceDropped == 0) {
-                     moldJuiceDropped = 1; // 단 1회만 나오도록 고정
+                     moldJuiceDropped = 1;
                      hasMoldJuice = 1;
                      bossHP -= 10;
                      set_color(FONT_COLOR_MAGENTA);
-                     printf("-> [곰팡이 녹즙 10%%] 이은석 교수님의 곰팡이 녹즙 획득! 보스 식중독 투척! HP -10 즉시 피해! (다음 턴부터 매 턴 보스 피 5 지속 감소)");
+                     printf("-> [곰팡이 녹즙 10%%] 이은석 교수님의 곰팡이 녹즙 획득! 보스식중독 투척! HP -10 즉시 피해! (다음 턴부터 매 턴 보스 피 5 지속 감소)");
                   }
                   else {
-                     // 이미 획득한 적이 있다면 '지퍼 꽝' 패널티 연출로 대체
                      set_color(FONT_COLOR_WHITE);
                      printf("-> [가방 서치 꽝] 곰팡이 녹즙을 또 던지려 가방을 뒤졌으나 지퍼 소리만 나고 꽝이었습니다.");
                   }
@@ -721,19 +717,24 @@ void start_battle() {
                isBossAttackTurn = true;
                move_cursor(20, 25);
                set_color(FONT_COLOR_RED);
-               printf("-> 🔥 [보스 각성] 피가 깎인 김상민이 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 각성! (HP 120 회복 / 매턴 공격 폭주!)");
+               printf("-> [보스 각성] 피가 깎인 김상민이 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 각성! (HP 120 회복 / 매턴 공격 폭주!)");
                skipBossTurn = 1;
                Sleep(1500);
             }
 
-            if (battleRunning) {
-               move_cursor(118, 3); set_color(FONT_COLOR_RED);
-               printf("[BOSS] 김상민 선배   HP: %d / 200  ", bossHP >= 0 ? bossHP : 0);
-               move_cursor(118, 4); printf("체력: ");
-               for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
-               for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
-               Sleep(1000);
-            }
+            // 실시간 수치 갱신
+            move_cursor(118, 3); set_color(FONT_COLOR_RED);
+            printf("[BOSS] 김상민 선배   HP: %d / 200  ", bossHP >= 0 ? bossHP : 0);
+            move_cursor(118, 4); printf("체력: ");
+            for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
+            for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
+
+            move_cursor(5, 31); set_color(FONT_COLOR_GREEN);
+            printf("[PLAYER] 김민성      HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
+            move_cursor(5, 33); printf("체력: ");
+            for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
+            for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
+            Sleep(1000);
 
             // --- [STAGE 2] 보스 공격 반격 파트 ---
             if (battleRunning && bossHP > 0) {
@@ -800,22 +801,35 @@ void start_battle() {
                }
             }
 
-            // --- [STAGE 4] 녹즙 & 곰팡이 녹즙 지속 도트 효과 정산 구역 ---
+            // --- [STAGE 4] 지속 도트 정산 구역 ---
             if (battleRunning) {
                if (hasGreenJuice && playerHP > 0) {
                   playerHP += 5;
                   if (playerHP > 100) playerHP = 100;
                   move_cursor(20, 28); set_color(FONT_COLOR_GREEN);
-                  printf("🌿 [녹즙 턴 정산] 몸속에 퍼진 고농축 녹즙이 활성화되어 체력을 5 회복합니다. (현재 HP: %d)", playerHP);
+                  printf("[녹즙 턴 정산] 몸속에 퍼진 고농축 녹즙이 활성화되어 체력을 5 회복합니다. (현재 HP: %d)", playerHP);
                   Sleep(600);
                }
                if (hasMoldJuice && bossHP > 0) {
                   bossHP -= 5;
                   move_cursor(20, 29); set_color(FONT_COLOR_MAGENTA);
-                  printf("🦠 [곰팡이 턴 정산] 김상민 선배가 식중독 복통을 호소하며 체력이 5 감소합니다. (보스 HP: %d)", bossHP >= 0 ? bossHP : 0);
+                  printf("[곰팡이 턴 정산] 김상민 선배가 식중독 복통을 호소하며 체력이 5 감소합니다. (보스 HP: %d)", bossHP >= 0 ? bossHP : 0);
                   Sleep(600);
                }
             }
+
+            // 화면 유지용 강제 출력
+            move_cursor(5, 31); set_color(FONT_COLOR_GREEN);
+            printf("[PLAYER] 김민성      HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
+            move_cursor(5, 33); printf("체력: ");
+            for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
+            for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
+
+            move_cursor(118, 3); set_color(FONT_COLOR_RED);
+            printf("[BOSS] 김상민 선배   HP: %d / 200  ", bossHP >= 0 ? bossHP : 0);
+            move_cursor(118, 4); printf("체력: ");
+            for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
+            for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
 
             // --- [STAGE 3] 시드 기반 동적 턴 스케줄러 시스템 ---
             if (!bossAwakened) {
@@ -824,7 +838,6 @@ void start_battle() {
                   bossCycleStep = 1;
                }
 
-               // 1번 시드 스케줄러: [A -> A -> B -> C]
                if (bossSeed == 1) {
                   if (bossCycleStep == 1 || bossCycleStep == 2) {
                      bossPatternState = 0; currentTurnDamage = 10; isBossAttackTurn = true;
@@ -845,7 +858,6 @@ void start_battle() {
                      bossPatternState = 5; bossExhaustCount = (11 - bossCycleStep) + 1; currentTurnDamage = 0; isBossAttackTurn = false;
                   }
                }
-               // 2번 시드 스케줄러: [B -> A -> C]
                else if (bossSeed == 2) {
                   if (bossCycleStep == 1) {
                      bossPatternState = 1; currentTurnDamage = 0; isBossAttackTurn = false;
@@ -866,7 +878,6 @@ void start_battle() {
                      bossPatternState = 5; bossExhaustCount = (10 - bossCycleStep); currentTurnDamage = 0; isBossAttackTurn = false;
                   }
                }
-               // 3번 시드 스케줄러: [A -> B -> A -> C]
                else if (bossSeed == 3) {
                   if (bossCycleStep == 1) {
                      bossPatternState = 0; currentTurnDamage = 10; isBossAttackTurn = true;
@@ -904,30 +915,18 @@ void start_battle() {
       // --- 결과 판단 구역 ---
       if (battleRunning)
       {
-         move_cursor(5, 31); set_color(FONT_COLOR_GREEN);
-         printf("[PLAYER] 김민성      HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
-         move_cursor(5, 33); printf("체력: ");
-         for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
-         for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
-
-         move_cursor(118, 3); set_color(FONT_COLOR_RED);
-         printf("[BOSS] 김상민 선배   HP: %d / 200  ", bossHP >= 0 ? bossHP : 0);
-         move_cursor(118, 4); printf("체력: ");
-         for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
-         for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
-
          if (bossHP <= 0)
          {
             Sleep(1000);
             system("cls");
             move_cursor(45, 12); set_color(FONT_COLOR_BRIGHTYELLOW);
-            printf("★ 승리! ★ 치열한 전투 끝에 김상민 선배를 물리쳤습니다!");
+            printf("[ 승리! ] 치열한 전투 끝에 김상민 선배를 물리쳤습니다!");
             Sleep(1500);
             move_cursor(45, 15); set_color(FONT_COLOR_GREEN);
             printf("하 김상민을 겨우 잡았다... 이 헬창새끼한테 붙잡혀서 운동으로 고문당하는 것도 이젠 끝이다.");
             Sleep(1500);
             move_cursor(45, 17);
-            printf("빨리 단계동으로 튀어서 동기들이랑 시원하게 소맥 말아 마셔야지! 🍻");
+            printf("빨리 단계동으로 튀어서 동기들이랑 시원하게 소맥 말아 마셔야지! ");
             Sleep(2000);
             move_cursor(45, 21); set_color(FONT_COLOR_WHITE);
             printf("-> 아무 키나 누르면 메인 메뉴로 돌아갑니다.");
@@ -939,7 +938,7 @@ void start_battle() {
             Sleep(1000);
             system("cls");
             move_cursor(45, 12); set_color(FONT_COLOR_BRIGHTMAGENTA);
-            printf("💀 패배... 💀 체력이 한계에 도달해 의식을 잃었습니다.");
+            printf("[ 패배... ] 체력이 한계에 도달해 의식을 잃었습니다.");
             Sleep(1500);
             move_cursor(45, 15); set_color(FONT_COLOR_RED);
             printf("김상민: 민성아 술자리가 웬 말이냐? 스쿼트 200개 더 채우고 집 가자.");
