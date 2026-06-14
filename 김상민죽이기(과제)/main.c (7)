@@ -1475,6 +1475,7 @@ void start_battle() {
                         printf("=> 보스가 숨을 고르거나 에너지를 비축하고 있습니다. (플레이어 피해 없음)");
                     }
                     else {
+                        playerHP -= currentTurnDamage;
                         set_color(FONT_COLOR_RED);
                         printf("=> 김상민 선배가 강력한 격돌 대미지 %d를 내리꽂습니다!", currentTurnDamage);
                         move_cursor(20, 31);
@@ -1526,6 +1527,7 @@ void start_battle() {
                                 printf("=> [회피 큰 성공 20%%] 김상민의 주먹을 가볍게 피하고 카운터! (보스 HP -30 관통 피해)");
                             }
                         }
+                     
                     }
                 }
 
