@@ -85,7 +85,7 @@ void print_attack_art() {
         "******************#*=..............-==+++*****####******#+:........................",
         "****####**####**=.............:-=+*#*++++**************#%@@%*-:....................",
         "..--::....................:=+++*+*#%%*+++************%@@@@@%%*+++-................."
-    };
+    }; 
 
     int startX = 30;
 
@@ -95,6 +95,86 @@ void print_attack_art() {
         printf("%s", art[i]);
     }
 }
+
+void print_jackpot_art() {
+    const char* jackpot[] = {
+        "                                   @#%@                                               ",
+        "                                   @%%@@@@                                            ",
+        "                           @@  @   @%###@@                                            ",
+        "                          @@@@@@@  @@@@%@                                             ",
+        "                           @@@%%@@@   @@@                             @@@@@@          ",
+        "                             @@@@@@@  @@@                          @@*-....:=%%@       ",
+        "                                  @@@ @@                          @%%:.........+@      ",
+        "                                     @@@      @@@@@@@@@@@@@@@@@@@@+............*@     ",
+        "                                 @@@@@@@ @@@@#-::::::::::::::::::..............=@     ",
+        "                               @@*-%@@@@ @@@@@=................................#@     ",
+        "                             @@*:..+*@  @@@ @@+...............................=@      ",
+        "                            @%%:.....+@   @@#=.................................*@      ",
+        "                          @%%-......-@    @@=:::::::::::::::::::::.............:%@     ",
+        "                        @%%=........:*@@@@@*::::::::::::::::::::::::...........:+@     ",
+        "                      @@+...........:::@@@@@@@@@@@@@@@@@@@@@@@@@@%%-:.........::+@     ",
+        "                     @*:..........:::+@@                          @%%::::.:::::-%@     ",
+        "                   @#:..........:::=@@  @@                         @%%=:::::::*@@      ",
+        "        @@%%###%%@@%*:..........:::-@@   @@@ @@@@ @                    @@@%%#%@@@        ",
+        "      @@*:..................:::-%%@     @@@   @@@@@@                                   ",
+        "     @%%-...................:::%@@      @@@    @@%@%@@@                                ",
+        "     @+..................:::*@@       @@%@@@@  @@@@@@@                                ",
+        "     @=.................::=@@         @%###%@       @                                 ",
+        "     @#:................:=@@         @@@@@#%@                                         ",
+        "      @#:................=@              @##@                                         ",
+        "        @%%*=:...........-@@            @@%%@                                         ",
+        "           @@=..........:-@@            @@@                                           ",
+        "            @%%::.....:::+@                                                           ",
+        "             @@@%%*+*#@@%@                                                            ",
+    };
+
+    int startX = 30;
+
+    set_color(FONT_COLOR_WHITE);
+    for (int i = 0; i < 28; i++) {
+        move_cursor(startX, i + 1);
+        printf("%s\n", jackpot[i]);
+    }
+}
+
+void print_lowkick_fail_art() {
+    const char* art[] = {
+        "....................................::.::.................................",
+        "..................................+%@@%%+=:...............................",
+        ".................................=%%%%%%@+=...............................",
+        ".................................-+##*###*%...............................",
+        ".................................:+++*****#...............................",
+        ".................................:++*#*****...............................",
+        "..................................=++****+:...............................",
+        "..................................-+*###*-................................",
+        "..................................=++****+-...............................",
+        ".............................:=*#%*++++*%%%+==-...........................",
+        ".........................:=++++#%%%%%%%%%%*====+++-.......................",
+        "........................+**#**+#%%%%%%%%%%+++++****+:.....................",
+        ".......................+#%%%#**%#%%%%%%%%*++***###%#+.....................",
+        "......................:*%%%%%##%%%%%%%%%%***##%%%%###-....................",
+        "......................+%%%%%%%%%%%%%%%%%%%%%%%%@@@%%#=....................",
+        "......................+#%%%%%%%%%%%%%%%%%%%%%%%@%%##*=....................",
+        "......................-==+#%%%%%%%%%%%%%%%%%%@@%*++++=....................",
+        "......................-==+*#%%%%%%%%%%%%%%%%%%@%*+==-=....................",
+        "......................=++*##%%%%%%%%%%%%%%%%@%@+***+++....................",
+        ".....................=#%%%%**%%%%%%%%%%%%%%%@@@=*@%###-...................",
+        ".....................=#%%@%%%%%%%%%%%%%%%%%%@@@=+@%###=...................",
+        "....................:*%%%@#-+%@%%%%%%%%%%%%@@@*:=@%##%=...................",
+        "....................:+++*#*.=%%%%%#%%%%%%%%%@@+..*=+**-...................",
+        ".....................-++**-.+%%%%%#%%%%%%%%@@@*..+==+*:...................",
+        ".....................-==**.:*%%%%%@@@@%%%%%%%%%#:===+=...................."
+    };
+
+    int startX = 35;
+    set_color(FONT_COLOR_WHITE);
+    for (int i = 0; i < 25; i++) {
+        move_cursor(startX, i + 1);
+        printf("%s\n", art[i]);
+    }
+}
+
+
 // 타이틀 대형 로고 출력
 void draw_title_logo() {
     move_cursor(40, 5);  print_colored_map(L"□■■■■■■□□□■□□□□■■□□□□■□□□□■■■■■■□□□■□□□□□■■■■■■■■■■□□□□□■■□□□□□■□□□□□□□□□□□□■\n");
@@ -492,7 +572,7 @@ void start_battle() {
                 Sleep(1500);
             }
 
-            move_cursor(22, 23);
+            move_cursor(22, 27);
             if (bossAwakened) {
                 set_color(FONT_COLOR_RED);
                 printf("[보스 분노] 버서커 모드 폭주! 패턴을 파괴하고 매 턴 공격합니다! (확정 대미지: 25)");
@@ -525,11 +605,11 @@ void start_battle() {
             }
 
             if (hasGreenJuice) {
-                move_cursor(22, 25); set_color(FONT_COLOR_GREEN);
+                move_cursor(22, 28); set_color(FONT_COLOR_GREEN);
                 printf("[지속 버프] 이은석 교수님의 녹즙 효과 활성화 (매 턴 체력 +5 회복)");
             }
             if (hasMoldJuice) {
-                move_cursor(22, 26); set_color(FONT_COLOR_MAGENTA);
+                move_cursor(22, 29); set_color(FONT_COLOR_MAGENTA);
                 printf("[지속 디버프] 곰팡이 녹즙 식중독 상태 (매 턴 보스 체력 -5 감소)");
             }
 
@@ -539,34 +619,34 @@ void start_battle() {
             for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
             for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
 
-            move_cursor(5, 32); set_color(FONT_COLOR_GREEN);
+            move_cursor(5, 36); set_color(FONT_COLOR_GREEN);
             printf("[PLAYER] 김민성      HP: %d / 100", playerHP >= 0 ? playerHP : 0);
-            move_cursor(5, 34); printf("체력: ");
+            move_cursor(5, 38); printf("체력: ");
             for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
             for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
 
             if (damageMultiplier > 1) {
-                move_cursor(5, 31);   set_color(FONT_COLOR_BRIGHTYELLOW);
+                move_cursor(5, 35);   set_color(FONT_COLOR_BRIGHTYELLOW);
                 printf("▶ 가방 효과 적용 중: 다음 공격력 %d배 강화!", damageMultiplier);
             }
 
-            move_cursor(69, 35); set_color(FONT_COLOR_WHITE); printf("행동을 선택하세요:");
+            move_cursor(69, 39); set_color(FONT_COLOR_WHITE); printf("행동을 선택하세요:");
 
             if (battleMenu == 1) set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK);
             else set_color(BG_COLOR_BLACK | FONT_COLOR_WHITE);
-            move_cursor(45, 39); printf(" 1. 공격하기 ");
+            move_cursor(45, 42); printf(" 1. 공격하기 ");
 
             if (battleMenu == 2) set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK);
             else set_color(BG_COLOR_BLACK | FONT_COLOR_WHITE);
-            move_cursor(62, 39); printf(" 2. 방어하기 ");
+            move_cursor(62, 42); printf(" 2. 방어하기 ");
 
             if (battleMenu == 3) set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK);
             else set_color(BG_COLOR_BLACK | FONT_COLOR_WHITE);
-            move_cursor(79, 39); printf(" 3. 가방뒤지기 ");
+            move_cursor(79, 42); printf(" 3. 가방뒤지기 ");
 
             if (battleMenu == 4) set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK);
             else set_color(BG_COLOR_BLACK | FONT_COLOR_WHITE);
-            move_cursor(96, 39); printf(" 4. 회피하기 ");
+            move_cursor(96, 42); printf(" 4. 회피하기 ");
 
             if (battleMenu == 5) set_color(BG_COLOR_RED | FONT_COLOR_WHITE);
             else set_color(BG_COLOR_BLACK | FONT_COLOR_MAGENTA);
@@ -598,18 +678,23 @@ void start_battle() {
 
                 if (battleMenu == 1)
                 {
-                    print_attack_art();
                     atkRate = rand() % 100;
                     set_color(FONT_COLOR_BRIGHTYELLOW);
-                    move_cursor(20, 25);
+                    move_cursor(20, 29);
 
                     if (atkRate < 55) {
+                        print_attack_art();
+                        set_color(FONT_COLOR_BRIGHTYELLOW);
+                        move_cursor(20, 29);
                         dmg = 20 * currentAppliedMultiplier;
                         printf("-> [일반공격 55%%] 주먹으로 김상민 안면 가격! 보스에게 %d 대미지를 입혔습니다!", dmg);
                         bossHP -= dmg;
                     }
                     else if (atkRate < 60) {
-                        dmg = 50 * currentAppliedMultiplier;
+                        print_jackpot_art();
+                        set_color(FONT_COLOR_WHITE);
+                        move_cursor(20, 29);
+                        dmg = 60 * currentAppliedMultiplier;
                         printf("-> [잭팟 5%%] W6 앞에 킥보드를 타고 김상민에게 최고 속력으로 박치기! 보스에게 %d 대미지!", dmg);
                         bossHP -= dmg;
                     }
@@ -618,7 +703,10 @@ void start_battle() {
                         printf("-> [돌던지기 10%%] 바닥에 있는 돌을 들고 머리 가격! 보스에게 %d 대미지!", dmg);
                         bossHP -= dmg;
                     }
-                    else if (atkRate < 80) { 
+                    else if (atkRate < 80) {
+                        print_lowkick_fail_art();
+                        set_color(FONT_COLOR_BRIGHTYELLOW);
+                        move_cursor(20, 29);
                         printf("-> [로우킥 15%%] 김상민에게 로우킥을 날렸으나 단단한 하체로 인해 데미지가 없었다! (대미지: 0 / 다음 턴 스킵)");
                         skipBossTurn = 1;
                     }
@@ -721,7 +809,7 @@ void start_battle() {
                     bossAwakened = 1;
                     currentTurnDamage = 25;
                     isBossAttackTurn = true;
-                    move_cursor(20, 25);
+                    move_cursor(20, 27);
                     set_color(FONT_COLOR_RED);
                     printf("-> [보스 각성] 피가 깎인 김상민이 이은석 교수님과 삼겹살과 소주 먹방으로 버서커 각성! (HP 120 회복 / 매턴 공격 폭주!)");
                     skipBossTurn = 1;
@@ -734,15 +822,15 @@ void start_battle() {
                 for (int i = 0; i < (bossHP > 0 ? bossHP : 0) / 10; i++) printf("■");
                 for (int i = 0; i < (200 - (bossHP > 0 ? bossHP : 0)) / 10; i++) printf("  ");
 
-                move_cursor(5, 32); set_color(FONT_COLOR_GREEN);
+                move_cursor(5, 36); set_color(FONT_COLOR_GREEN);
                 printf("[PLAYER] 김민성      HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
-                move_cursor(5, 34); printf("체력: ");
+                move_cursor(5, 38); printf("체력: ");
                 for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
                 for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
                 Sleep(1000);
 
                 if (battleRunning && bossHP > 0) {
-                    move_cursor(20, 27);
+                    move_cursor(20, 30);
 
                     if (skipBossTurn) {
                         set_color(FONT_COLOR_GREEN);
@@ -756,7 +844,7 @@ void start_battle() {
                     else {
                         set_color(FONT_COLOR_RED);
                         printf("=> 김상민 선배가 강력한 격돌 대미지 %d를 내리꽂습니다!", currentTurnDamage);
-                        move_cursor(20, 27);
+                        move_cursor(20, 31);
 
                         if (isDefendSelected) {
                             if (rolledDefRate < 70) {
@@ -809,21 +897,21 @@ void start_battle() {
                     if (hasGreenJuice && playerHP > 0) {
                         playerHP += 5;
                         if (playerHP > 100) playerHP = 100;
-                        move_cursor(20, 28); set_color(FONT_COLOR_GREEN);
+                        move_cursor(20, 32); set_color(FONT_COLOR_GREEN);
                         printf("[녹즙 턴 정산] 몸속에 퍼진 고농축 녹즙이 활성화되어 체력을 5 회복합니다. (현재 HP: %d)", playerHP);
                         Sleep(600);
                     }
                     if (hasMoldJuice && bossHP > 0) {
                         bossHP -= 5;
-                        move_cursor(20, 29); set_color(FONT_COLOR_MAGENTA);
+                        move_cursor(20, 33); set_color(FONT_COLOR_MAGENTA);
                         printf("[곰팡이 턴 정산] 김상민 선배가 식중독 복통을 호소하며 체력이 5 감소합니다. (보스 HP: %d)", bossHP >= 0 ? bossHP : 0);
                         Sleep(600);
                     }
                 }
 
-                move_cursor(5, 32); set_color(FONT_COLOR_GREEN);
+                move_cursor(5, 36); set_color(FONT_COLOR_GREEN);
                 printf("[PLAYER] 김민성      HP: %d / 100  ", playerHP >= 0 ? playerHP : 0);
-                move_cursor(5, 34); printf("체력: ");
+                move_cursor(5, 38); printf("체력: ");
                 for (int i = 0; i < (playerHP > 0 ? playerHP : 0) / 10; i++) printf("■");
                 for (int i = 0; i < (100 - (playerHP > 0 ? playerHP : 0)) / 10; i++) printf("  ");
 
@@ -906,7 +994,7 @@ void start_battle() {
                 }
 
                 if (battleRunning) {
-                    move_cursor(20, 30);
+                    move_cursor(20, 34);
                     set_color(FONT_COLOR_WHITE);
                     printf("다음 턴을 진행하려면 아무 키나 입력하세요...");
                     _getch();
