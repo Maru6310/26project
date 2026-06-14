@@ -121,7 +121,7 @@ void show_maker_info() {
    system("cls");
 }
 
-// [메뉴 2] 게임 설명 화면
+//[메뉴 2] 게임 설명 화면//
 void show_game_desc() {
    int page = 1;
    int inRunning = 1;
@@ -133,9 +133,10 @@ void show_game_desc() {
    {
       if (needRedraw)
       {
+         // 총 페이지 수를 5로 변경
          move_cursor(70, 3);
          set_color(FONT_COLOR_BRIGHTMAGENTA);
-         printf("[ 게임 설명   %d / 4 ]                                     ", page);
+         printf("[ 게임 설명   %d / 5 ]                                     ", page);
 
          for (int i = 6; i < 35; i++) {
             move_cursor(35, i);
@@ -274,6 +275,26 @@ void show_game_desc() {
             printf("종이 한 장 차이로 멋지게 피하고 턱 각도 카운터 펀치! (보스 ");
             set_color(FONT_COLOR_RED); printf("HP -30"); set_color(FONT_COLOR_WHITE); printf(" 관통 피해)");
          }
+         else if (page == 5) // 새롭게 추가된 5페이지
+         {
+            move_cursor(73, 7);
+            set_color(FONT_COLOR_BRIGHTYELLOW);
+            printf("■ 5. 행동 규칙: 도망가기 ■");
+
+            move_cursor(40, 12);
+            set_color(FONT_COLOR_MAGENTA); printf("[5. 도망가기...]");
+            set_color(FONT_COLOR_WHITE); printf(" 김상민 선배의 압도적인 위압감을 이기지 못하고 런!");
+
+            move_cursor(42, 16); set_color(FONT_COLOR_RED); printf("- ⚠️ 주의 사항:");
+            move_cursor(45, 18); set_color(FONT_COLOR_WHITE);
+            printf("선택 즉시 전투가 중단되며, 특수한 스토리 연출이 발생합니다.");
+
+            move_cursor(45, 21); set_color(FONT_COLOR_WHITE);
+            printf("과연 괴물 헬창 선배의 손아귀에서 완벽히 벗어날 수 있을까요...?");
+
+            move_cursor(45, 24); set_color(FONT_COLOR_RED);
+            printf("전투 불능 패배와는 또 다른 [특수 엔딩(BAD END)]을 보게 됩니다.");
+         }
 
          move_cursor(68, 36);
          set_color(FONT_COLOR_WHITE);
@@ -290,7 +311,7 @@ void show_game_desc() {
       {
          key = _getch();
          if (key == 75) { if (page > 1) { page--; needRedraw = 1; } }
-         else if (key == 77) { if (page < 4) { page++; needRedraw = 1; } }
+         else if (key == 77) { if (page < 5) { page++; needRedraw = 1; } } // 최대 페이지 한계를 5로 확장
       }
       else { inRunning = 0; }
    }
@@ -912,12 +933,12 @@ int main() {
       set_color(BG_COLOR_BLACK | FONT_COLOR_WHITE);
       move_cursor(70, 24); printf(" 1.  게임 시작   ");
       move_cursor(70, 26); printf(" 2.  게임 설명   ");
-      move_cursor(70, 28); printf(" 3.  made by       ");
+      move_cursor(70, 28); printf(" 3.  만든이 설명      ");
       move_cursor(70, 30); printf(" 4.  게임 종료   ");
 
       if (posY == 1) { move_cursor(70, 24); set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK); printf(" 1.  게임 시작   "); }
       else if (posY == 2) { move_cursor(70, 26); set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK); printf(" 2.  게임 설명   "); }
-      else if (posY == 3) { move_cursor(70, 28); set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK); printf(" 3.  made by       "); }
+      else if (posY == 3) { move_cursor(70, 28); set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK); printf(" 3.  만든이 설명      "); }
       else if (posY == 4) { move_cursor(70, 30); set_color(BG_COLOR_YELLOW | FONT_COLOR_BLACK); printf(" 4.  게임 종료   "); }
 
       set_color(COLOR_RESET);
