@@ -82,7 +82,7 @@ int ProcessRunMode()
             return 0; // 취소
         }
         else {
-            move_cursor(15, 25);
+            move_cursor(15, 26);
             set_color(FONT_COLOR_RED);
             printf("잘못 입력했습니다! 'Run'을 정확하게 입력하세요.");
             Sleep(1500);
@@ -1263,20 +1263,22 @@ void start_battle() {
                     if  (result == 2)
                     {
                         system("cls");
-                        move_cursor(60, 12); printf("김상민을 뿌리치고 도망쳤다.."); Sleep(2000);
-                        move_cursor(61, 14); printf("비록 동기들과의 술자리는 가지 못했지만"); Sleep(2000);
-                        move_cursor(60, 16); printf("김상민과의 싸움을 이길 가능성도 희박하고"); Sleep(2000);
-                        move_cursor(60, 18); printf("만약 지면 끔찍한 지옥을 보았을 것이다..."); Sleep(2000);
-                        move_cursor(70, 20); set_color(FONT_COLOR_GREEN); printf("무사히 도망치길 잘했다.."); Sleep(2500);
-                        move_cursor(63, 23); set_color(FONT_COLOR_WHITE); printf("아니, 무사히 도망쳤다고 생각했었다."); Sleep(2500);
-                        move_cursor(69, 26); set_color(FONT_COLOR_RED); printf("김상민: \"민성아. 가야지?\""); Sleep(2500);
-                        move_cursor(65, 29); set_color(FONT_COLOR_WHITE); printf("..그에게서 벗어날 수는 없었다."); Sleep(2000);
+                        move_cursor(64, 12); set_color(FONT_COLOR_WHITE); printf("김상민을 뿌리치고 도망쳤다.."); Sleep(2000);
+                        move_cursor(61, 14); set_color(FONT_COLOR_WHITE); printf("비록 동기들과의 술자리는 가지 못했지만"); Sleep(2000);
+                        move_cursor(60, 16); set_color(FONT_COLOR_WHITE); printf("김상민과의 싸움을 이길 가능성도 희박하고"); Sleep(2000);
+                        move_cursor(60, 18); set_color(FONT_COLOR_WHITE); printf("만약 지면 끔찍한 지옥을 보았을 것이다..."); Sleep(2000);
+                        move_cursor(68, 20); set_color(FONT_COLOR_GREEN); printf("무사히 도망치길 잘했다.."); Sleep(2500);
+                        move_cursor(63, 23); set_color(FONT_COLOR_RED); printf("아니, 무사히 도망쳤다고 생각했었다."); Sleep(2500);
+                        move_cursor(68, 26); set_color(FONT_COLOR_RED); printf("김상민: \"민성아. 가야지?\""); Sleep(2500);
+                        move_cursor(65, 29); set_color(FONT_COLOR_RED); printf("..그에게서 벗어날 수는 없었다."); Sleep(2000);
                         move_cursor(75, 32); set_color(FONT_COLOR_RED); printf("-BAD END-"); Sleep(2000);
                         move_cursor(57, 35); set_color(FONT_COLOR_GREEN); printf("-> 아무 키나 누르면 타이틀 화면으로 이동합니다.");
                         _getch();
+                        system("cls");
                         return;
                     }
-                    else {
+                    else 
+                    {
                         system("cls");
                         continue;
                     }
