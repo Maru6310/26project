@@ -263,7 +263,7 @@ void start_battle()
    if (!skipIntro)
    {
       move_cursor(61, 12);
-      printf("홍업사거리에서 김상민을 마주쳤다.");
+      printf("W6에서 김상민을 마주쳤다.");
       if (sleep_or_skip(2000)) skipIntro = 1;
    }
    if (!skipIntro)
@@ -470,7 +470,7 @@ void start_battle()
             }
             else if (rate < 90) {
                set_color(FONT_COLOR_RED);
-               printf("-> [실패 15%%] 김상민에게 로우킥을 날렸으나 다리가 단단해 내 다리가 다침! (플레이어 HP -10)");
+               printf("-> [실패 15%%] 김상민에게 로우킥을 날렸으나 단단한 하체로 인해 아무 데미지를 넣지못했다! (플레이어 HP -0)");
                playerHP -= 10;
                skipBossTurn = 1;
             }
@@ -485,7 +485,7 @@ void start_battle()
             }
             else {
                int dmg = 50 * damageMultiplier;
-               printf("-> [성공 5%%] 킥보드로 도망치는 척 교란 후 핸들을 틀어 박치기! (보스 HP -%d)", dmg);
+               printf("-> [성공 5%%] W6앞에 킥보드를 타고 최고 속도로 김상민에게 돌진하여 골절되는 큰 피해를 입혔다! (보스 HP -%d)", dmg);
                bossHP -= dmg;
                if (damageMultiplier > 1) {
                   set_color(FONT_COLOR_RED);
@@ -515,7 +515,7 @@ void start_battle()
             }
             else {
                set_color(FONT_COLOR_RED);
-               printf("-> [방어 실패 20%%] 허접한 타이밍으로 가드 아예 실패! (플레이어 HP -10)");
+               printf("-> [방어 실패 20%%] 김상민이 덤밸을 들고 가격하여 가드 실패! (플레이어 HP -10)");
                playerHP -= 10;
             }
          }
@@ -536,7 +536,7 @@ void start_battle()
             }
             else {
                set_color(FONT_COLOR_RED);
-               printf("-> [회피 실패 50%%] 보스가 날리는 주먹에 심리전 실패로 얼굴 가격당함! (보스 턴 진행)");
+               printf("-> [회피 실패 50%%] 회피를 시도하였으나 멱살이 잡혀 얼굴 가격당함! (보스 턴 진행)");
                skipBossTurn = 0;
             }
          }
